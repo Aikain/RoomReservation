@@ -22,7 +22,7 @@ public class Room implements Serializable {
     private int roomNro;
     @OrderBy("startTime ASC")
     @JoinColumn(name = "Room_Reservation", unique = false)
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy = "Reservation")
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<Reservation> reservations;
 
     public Room() {
