@@ -2,6 +2,7 @@
 <%@page import="java.text.DateFormat"%>
 <%@page import="java.util.Calendar"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -27,8 +28,8 @@
                     %>
             </tr>
             <c:forEach var="room" items="${rooms}">
-                <c:if test="${Integer.toString(room.roomNro).charAt(Integer.toString(room.roomNro).length-1)} == 1">
-                    <tr><td rowspan="8" class="emptyRow"></td><tr>
+                <c:if test="${room.roomNro % 100 == 1}">
+                    <tr><td colspan="8" class="emptyRow"></td><tr>
                 </c:if>
                 <tr>
                     <td>${room.roomNro}</td>
