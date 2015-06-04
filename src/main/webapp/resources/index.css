@@ -10,4 +10,5 @@ table, th, td {
 }
 .emptyRow {
     background: grey;
+    height: 10px;
 }
