@@ -46,4 +46,5 @@ table, th, td {
     width: 1px;
     height: 100%;
     top: 42px;
+    z-index: 1
 }

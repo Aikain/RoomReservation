@@ -1,8 +1,9 @@
 package fi.gosu.roomreservation.domain;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,9 +21,13 @@ public class Reservation implements Serializable {
     private Date startTime;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date endTime;
-    private String person;
+    private List<String> persons;
     @ManyToOne
     private Room room;
+
+    public Reservation() {
+        this.persons = new ArrayList<>();
+    }
 
     public Long getId() {
         return id;
@@ -48,12 +53,12 @@ public class Reservation implements Serializable {
         this.endTime = endTime;
     }
 
-    public String getPerson() {
-        return person;
+    public List<String> getPerson() {
+        return persons;
     }
 
-    public void setPerson(String person) {
-        this.person = person;
+    public void setPerson(List<String> persons) {
+        this.persons = persons;
     }
 
     public Room getRoom() {

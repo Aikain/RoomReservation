@@ -96,10 +96,26 @@
         </div>
         <div class="addReservation">
             <form method="POST" action="../room/1/addReservation">
-                <input type="text" name="person" placeholder="Nimi" />
-                <input type="datetime" name="startTime" placeholder="Saapumisaika" />
-                <input type="datetime" name="endTime" placeholder="Lähtöaika" />
-                <input type="submit" value="Lisää" />
+                <table>
+                    <tbody>
+                        <tr>
+                            <td><input type="text" name="person0" placeholder="Nimi" /></td>
+                        </tr>
+                        <tr>
+                            <td>Huone: </td>
+                            <td>
+                                <select>
+                                    <c:forEach var="room" items="${rooms}">
+                                        <option value="${room.id}">${room.roomNro}</option>
+                                    </c:forEach>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr><td><input type="datetime" name="startTime" placeholder="Saapumisaika" /></td></tr>
+                        <tr><td><input type="datetime" name="endTime" placeholder="Lähtöaika" /></td></tr>
+                        <tr><td><input type="submit" value="Lisää" /></td></tr>
+                    </tbody>
+                </table>
             </form>
         </div>
     </body>
