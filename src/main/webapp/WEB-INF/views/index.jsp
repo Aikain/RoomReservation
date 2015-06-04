@@ -15,13 +15,13 @@
     <body>
         <table>
             <tr>
-                <th width="60px">Huone</th>
+                <th class='roomNro'>Huone</th>
                 <%
                     Calendar cal = Calendar.getInstance();
                     cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
                     DateFormat df = new SimpleDateFormat("EEE dd/MM/yyyy");
                     for (int i = 0; i < 7; i++) {
-                        out.print("<th>" + df.format(cal.getTime()) + "</th>");
+                        out.print("<th class='date'>" + df.format(cal.getTime()) + "</th>");
                         cal.add(Calendar.DATE, 1);
                     }
                 %>

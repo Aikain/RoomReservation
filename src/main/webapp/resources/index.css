@@ -2,6 +2,9 @@ table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
 }
-th {
+.roomNro {
+    width: 60px;
+}
+.date {
     width: 160px;
 }
