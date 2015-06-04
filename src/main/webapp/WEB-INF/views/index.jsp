@@ -71,7 +71,7 @@
                                     if (startweek <= week && endweek >= week) {
                                         Double width = 163 * 7 * (r.getEndTime().getTime() - r.getStartTime().getTime()) / 608400000.0;
                                         Double left = 163 * 7 * (r.getStartTime().getTime() - weekStartTime) / 608400000.0 - oldwidth;
-                                        out.print("<div class='reservation" + (n % 2 + 1) + "' style='left:" + left + "px;width:" + width + "'>" + r.getPerson() + "</div>");
+                                        out.print("<div class='reservation" + (n % 2 + 1) + "' style='left:" + left + "px;width:" + width + "px'>" + r.getPerson() + "</div>");
                                         oldwidth += width;
                                     }
                                     n++;
