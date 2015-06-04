@@ -14,14 +14,17 @@
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/index.css' />" />
     </head>
     <body>
-        ${week}
         <table>
+            <tr>
+              <td class='previousWeek' colspan=7><a href="${week -1 }">Edellinen viikko</a></td>
+              <td class='nextWeek'><a href="${week + 1}">Seuraava viikko</a></td>
+            </tr>
             <tr>
                 <th class='roomNro'>Huone</th>
                     <%
                         Calendar cal = Calendar.getInstance();
                         cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-                        cal.add(Calendar.DAY_OF_MONTH, 7 * (int)pageContext.getAttribute("week"));
+                        cal.add(Calendar.DAY_OF_MONTH, 7 * (int)request.getAttribute("week"));
                         DateFormat df = new SimpleDateFormat("EEE dd/MM/yyyy");
                         for (int i = 0; i < 7; i++) {
                             out.print("<th class='date'>" + df.format(cal.getTime()) + "</th>");
@@ -31,10 +34,11 @@
             </tr>
             <c:forEach var="room" items="${rooms}">
                 <c:if test="${room.roomNro % 100 == 1}">
-                    <tr><td colspan="8" class="emptyRow"></td><tr>
+                    <tr><td colspan="8" class="emptyRow"></td></tr>
                 </c:if>
                 <tr>
                     <td>${room.roomNro}</td>
+                    <td colspan=7>${room.reservations}</td>
                 </tr>
             </c:forEach>
         </table>

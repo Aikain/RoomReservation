@@ -12,3 +12,10 @@ table, th, td {
     background: grey;
     height: 10px;
 }
+.nextWeek {
+    border: 0px;
+    text-align: right;
+}
+.previousWeek {
+    border: 0px;
+}
