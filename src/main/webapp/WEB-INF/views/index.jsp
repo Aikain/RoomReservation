@@ -49,25 +49,23 @@
                 </tr>
                 <c:forEach var="room" items="${rooms}">
                     <c:if test="${room.roomNro % 100 == 1}">
-                        <tr>
-                            <td colspan="8" class="emptyRow">
-                                <%
-                                    List<Reservation> reservations = ((Room)pageContext.getAttribute("room")).getReservations();
-                                    Calendar now = Calendar.getInstance();
-                                    now.get(Calendar.WEEK_OF_YEAR);
-                                    for (Reservation r : reservations) {
-                                        Calendar call = Calendar.getInstance();
-                                        call.setTimeInMillis(r.getStartTime().getTime());
-                                        out.print(call.getWeekYear());
-                                        out.print(" " + Calendar.WEEK_OF_YEAR);
-                                    }
-                                %>
-                            </td>
-                        </tr>
+                        <tr><td colspan="8" class="emptyRow"></td></tr>
                     </c:if>
                     <tr>
                         <td>${room.roomNro}</td>
-                        <td colspan=7>${room.reservations}</td>
+                        <td colspan=7>
+                            <%
+                                List<Reservation> reservations = ((Room) pageContext.getAttribute("room")).getReservations();
+                                Calendar now = Calendar.getInstance();
+                                now.get(Calendar.WEEK_OF_YEAR);
+                                for (Reservation r : reservations) {
+                                    Calendar call = Calendar.getInstance();
+                                    call.setTimeInMillis(r.getStartTime().getTime());
+                                    out.print(call.getWeekYear());
+                                    out.print(" " + Calendar.WEEK_OF_YEAR);
+                                }
+                            %>
+                        </td>
                     </tr>
                 </c:forEach>
             </table>
@@ -75,6 +73,12 @@
                 <input type="number" name="roomNro" placeholder="Huonenumero" />
                 <input type="submit" value="Lisää" />
             </form>
+            <form method="POST" action="room/101/addReservation">
+                <input type="time" name="startTime" placeholder="Saapumisaika" />
+                <input type="time" name="endTime" placeholder="Lähtöaika" />
+                <input type="text" name="person" placeholder="Nimi" />
+                <input type="submit" value="Lisää" />
+            </form>                
         </div>
         <div class="addReservation">
 
