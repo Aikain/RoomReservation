@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 public class Reservation implements Serializable {
@@ -15,7 +16,9 @@ public class Reservation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date startTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date endTime;
     private String person;
     @ManyToOne

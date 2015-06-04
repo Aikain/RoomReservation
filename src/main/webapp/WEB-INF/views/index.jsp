@@ -57,26 +57,31 @@
                             <%
                                 List<Reservation> reservations = ((Room) pageContext.getAttribute("room")).getReservations();
                                 Calendar now = Calendar.getInstance();
-                                now.get(Calendar.WEEK_OF_YEAR);
+                                int week = now.get(Calendar.WEEK_OF_YEAR);
                                 for (Reservation r : reservations) {
                                     Calendar call = Calendar.getInstance();
                                     call.setTimeInMillis(r.getStartTime().getTime());
-                                    out.print(call.getWeekYear());
-                                    out.print(" " + Calendar.WEEK_OF_YEAR);
+                                    int startweek = call.get(Calendar.WEEK_OF_YEAR));
+                                    Calendar call2 = Calendar.getInstance();
+                                    call2.setTimeInMillis(r.getEndTime().getTime());
+                                    int endweek = call2.get(Calendar.WEEK_OF_YEAR));
+                                    if (startweek <= week && endweek >= week) {
+                                        out.print("<div>" + r.getPerson() + "</div>");
+                                    }
                                 }
                             %>
                         </td>
                     </tr>
                 </c:forEach>
             </table>
-            <form method="POST" action="room">
+            <form method="POST" action="../room">
                 <input type="number" name="roomNro" placeholder="Huonenumero" />
                 <input type="submit" value="Lisää" />
             </form>
-            <form method="POST" action="room/101/addReservation">
-                <input type="time" name="startTime" placeholder="Saapumisaika" />
-                <input type="time" name="endTime" placeholder="Lähtöaika" />
+            <form method="POST" action="../room/1/addReservation">
                 <input type="text" name="person" placeholder="Nimi" />
+                <input type="datetime" name="startTime" placeholder="Saapumisaika" />
+                <input type="datetime" name="endTime" placeholder="Lähtöaika" />
                 <input type="submit" value="Lisää" />
             </form>                
         </div>
