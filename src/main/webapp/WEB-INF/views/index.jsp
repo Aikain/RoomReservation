@@ -19,10 +19,14 @@
                 Calendar cal = Calendar.getInstance();
                 cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
                 cal.add(Calendar.DAY_OF_MONTH, 7 * (int) request.getAttribute("week"));
-                if ((int) request.getAttribute("week") == 0) {
+                cal.set(Calendar.HOUR, 0);
+                cal.set(Calendar.MINUTE, 0);
+                cal.set(Calendar.SECOND, 0);
+                cal.set(Calendar.HOUR_OF_DAY, 0);
+                if ((int) request.getAttribute("week") != 0) {
                     out.print("0");
                 } else {
-                    out.print("" + (63 + 163 * 7 * ((System.currentTimeMillis() - cal.getTimeInMillis()) / 604800000)));
+                    out.print("" + (63 + (System.currentTimeMillis() - cal.getTimeInMillis()) * 163 * 7 / 604800000));
                 }
                  %>px"></div>
             <table>
