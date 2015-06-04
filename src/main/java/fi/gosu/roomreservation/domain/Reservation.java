@@ -22,7 +22,7 @@ public class Reservation implements Serializable {
     private Date startTime;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date endTime;
-    @OneToMany
+    @OneToMany(mappedBy = "Room")
     private List<Person> persons;
     @ManyToOne
     private Room room;

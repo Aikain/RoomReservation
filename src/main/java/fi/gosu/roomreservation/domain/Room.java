@@ -20,7 +20,7 @@ public class Room implements Serializable {
 
     private int roomNro;
     @OrderBy("startTime ASC")
-    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE}, mappedBy = "Reservation")
     private List<Reservation> reservations;
 
     public Room() {
