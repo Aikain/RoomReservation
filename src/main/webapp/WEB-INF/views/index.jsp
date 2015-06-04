@@ -57,14 +57,14 @@
                             <%
                                 List<Reservation> reservations = ((Room) pageContext.getAttribute("room")).getReservations();
                                 Calendar now = Calendar.getInstance();
-                                int week = now.get(Calendar.WEEK_OF_YEAR);
+                                int week = now.get(Calendar.WEEK_OF_YEAR) + (int) request.getAttribute("week");
                                 for (Reservation r : reservations) {
                                     Calendar call = Calendar.getInstance();
                                     call.setTimeInMillis(r.getStartTime().getTime());
-                                    int startweek = call.get(Calendar.WEEK_OF_YEAR));
+                                    int startweek = call.get(Calendar.WEEK_OF_YEAR);
                                     Calendar call2 = Calendar.getInstance();
                                     call2.setTimeInMillis(r.getEndTime().getTime());
-                                    int endweek = call2.get(Calendar.WEEK_OF_YEAR));
+                                    int endweek = call2.get(Calendar.WEEK_OF_YEAR);
                                     if (startweek <= week && endweek >= week) {
                                         out.print("<div>" + r.getPerson() + "</div>");
                                     }
