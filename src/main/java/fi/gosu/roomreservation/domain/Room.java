@@ -14,13 +14,23 @@ import javax.persistence.OneToMany;
 public class Room implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
     private Long roomNro;
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<Reservation> reservations;
 
     public Room() {
         this.reservations = new ArrayList<>();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Long getRoomNro() {
