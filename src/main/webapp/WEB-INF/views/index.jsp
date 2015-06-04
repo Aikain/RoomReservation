@@ -27,7 +27,7 @@
                     %>
             </tr>
             <c:forEach var="room" items="${rooms}">
-                <c:if test="${Integer.toString(room.roomNro).slice(-1)} == 1">
+                <c:if test="${Integer.toString(room.roomNro).charAt(Integer.toString(room.roomNro).length-1)} == 1">
                     <tr><td rowspan="8" class="emptyRow"></td><tr>
                 </c:if>
                 <tr>
