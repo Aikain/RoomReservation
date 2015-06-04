@@ -94,7 +94,7 @@
             </form>
         </div>
         <div class="addReservation">
-            <form method="POST" action="../room/1/addReservation">
+            <form id="addReservationForm" method="POST" action="../room/1/addReservation">
                 <table>
                     <tbody>
                         <tr>
@@ -105,7 +105,7 @@
                             <td>
                                 <select>
                                     <c:forEach var="room" items="${rooms}">
-                                        <option value="${room.id}">${room.roomNro}</option>
+                                        <option id="selectedRoomNro" value="${room.id}">${room.roomNro}</option>
                                     </c:forEach>
                                 </select>
                             </td>
