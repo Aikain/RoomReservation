@@ -1,3 +1,6 @@
+<%@page import="fi.gosu.roomreservation.domain.Room"%>
+<%@page import="java.util.List"%>
+<%@page import="fi.gosu.roomreservation.domain.Reservation"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.text.DateFormat"%>
 <%@page import="java.util.Calendar"%>
@@ -46,8 +49,22 @@
                 </tr>
                 <c:forEach var="room" items="${rooms}">
                     <c:if test="${room.roomNro % 100 == 1}">
-                        <tr><td colspan="8" class="emptyRow"></td></tr>
-                        </c:if>
+                        <tr>
+                            <td colspan="8" class="emptyRow">
+                                <%
+                                    List<Reservation> reservations = ((Room)pageContext.getAttribute("room")).getReservations();
+                                    Calendar now = Calendar.getInstance();
+                                    now.get(Calendar.WEEK_OF_YEAR);
+                                    for (Reservation r : reservations) {
+                                        Calendar call = Calendar.getInstance();
+                                        call.setTimeInMillis(r.getStartTime().getTime());
+                                        out.print(call.getWeekYear());
+                                        out.print(" " + Calendar.WEEK_OF_YEAR);
+                                    }
+                                %>
+                            </td>
+                        </tr>
+                    </c:if>
                     <tr>
                         <td>${room.roomNro}</td>
                         <td colspan=7>${room.reservations}</td>
