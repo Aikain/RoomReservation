@@ -23,7 +23,7 @@ public class Reservation implements Serializable {
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date endTime;
     @OneToMany
-    private List<String> persons;
+    private List<Person> persons;
     @ManyToOne
     private Room room;
 
@@ -55,11 +55,11 @@ public class Reservation implements Serializable {
         this.endTime = endTime;
     }
 
-    public List<String> getPerson() {
+    public List<Person> getPerson() {
         return persons;
     }
 
-    public void setPerson(List<String> persons) {
+    public void setPerson(List<Person> persons) {
         this.persons = persons;
     }
 

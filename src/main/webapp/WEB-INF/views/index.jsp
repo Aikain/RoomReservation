@@ -98,7 +98,7 @@
                 <table>
                     <tbody>
                         <tr>
-                            <td><input type="text" name="person0" placeholder="Nimi" /></td>
+                            <td><input type="text" name="person0.name" placeholder="Nimi" /></td>
                         </tr>
                         <tr>
                             <td>Huone: </td>
