@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface RoomRepository extends JpaRepository<Room, Long> {
 
-    public List<Room> findAllOrderByRoomNro();
+    public List<Room> findAllOrderByRoomNroAsc();
 }
