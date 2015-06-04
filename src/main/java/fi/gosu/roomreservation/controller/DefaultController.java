@@ -16,7 +16,7 @@ public class DefaultController {
     
     @RequestMapping(method = RequestMethod.GET)
     public String view(Model model) {
-        model.addAttribute("rooms", roomRepository.findAllOrderByRoomNro());
+        model.addAttribute("rooms", roomRepository.findAllOrderByRoomNroAsc());
         return "index";
     }
 
