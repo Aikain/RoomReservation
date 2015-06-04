@@ -1,3 +1,12 @@
+.addReservation {
+    float: left;
+    position: relative;
+}
+.reservationTable {
+    width: 1250px;
+    position: relative;
+    float: left;
+}
 table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
@@ -7,6 +16,8 @@ table, th, td {
 }
 .date {
     width: 160px;
+    min-width: 160px;
+    max-width: 160px;
 }
 .emptyRow {
     background: grey;
@@ -18,4 +29,18 @@ table, th, td {
 }
 .previousWeek {
     border: 0px;
+}
+.reservation1 {
+    background: greenyellow;
+    position: relative;
+}
+.reservation2 {
+    background: yellow;
+    position: relative;
+}
+.today {
+    position: absolute;
+    background-color: #000000;
+    width: 1px;
+    height: 100%;
 }
