@@ -15,7 +15,7 @@
     <body>
         <table>
             <tr>
-                <th>Huonenumero</th>
+                <th width="60px">Huone</th>
                 <%
                     Calendar cal = Calendar.getInstance();
                     cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
