@@ -73,8 +73,8 @@
                                         Double left = 163 * 7 * (r.getStartTime().getTime() - weekStartTime) / 608400000.0 - oldwidth;
                                         if (left < 0) {
                                             left = 0.0;
-                                        } else if (left + width + oldwidth > 163 * 7) {
-                                            width = 163 * 7 - left - oldwidth - 1;
+                                        } else if (left + width + oldwidth > 163 * 7 - 2) {
+                                            width = 163 * 7 - left - oldwidth - 2;
                                         }
                                         out.print("<div class='reservation" + (n % 2 + 1) + "' style='left:" + left + "px;width:" + width + "px'>" + r.getPerson() + "</div>");
                                         oldwidth += width;
