@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -15,8 +16,13 @@ public class DefaultController {
     @Autowired
     private RoomRepository roomRepository;
 
-    @RequestMapping(method = RequestMethod.GET)
-    public String view(Model model) {
+    @RequestMapping(value = "index/{week}", method = RequestMethod.GET)
+    public String view(Model model, @PathVariable String week) {
+        if (week != null || week != "") {
+            model.addAttribute("week", Integer.parseInt(week));
+        } else {
+            model.addAttribute("week", 0);
+        }
         model.addAttribute("rooms", roomRepository.findAll(new Sort(Sort.Direction.ASC, "roomNro")));
         return "index";
     }

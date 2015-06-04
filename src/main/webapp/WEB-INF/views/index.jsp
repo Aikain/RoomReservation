@@ -14,6 +14,7 @@
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/index.css' />" />
     </head>
     <body>
+        ${week}
         <table>
             <tr>
                 <th class='roomNro'>Huone</th>
