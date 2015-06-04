@@ -15,8 +15,15 @@
     </head>
     <body>
         <div class="reservationTable">
-            <div class="today" left="<%
-                out.print("300");
+            <div class="today" style="left:<%
+                Calendar cal = Calendar.getInstance();
+                cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+                cal.add(Calendar.DAY_OF_MONTH, 7 * (int) request.getAttribute("week"));
+                if ((int) request.getAttribute("week") == 0) {
+                    out.print("0");
+                } else {
+                    out.print("" + (63 + 163 * 7 * ((System.currentTimeMillis() - cal.getTimeInMillis()) / 604800000)));
+                }
                  %>px"></div>
             <table>
                 <tr>
@@ -26,9 +33,6 @@
                 <tr>
                     <th class='roomNro'>Huone</th>
                         <%
-                            Calendar cal = Calendar.getInstance();
-                            cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-                            cal.add(Calendar.DAY_OF_MONTH, 7 * (int) request.getAttribute("week"));
                             DateFormat df = new SimpleDateFormat("EEE dd/MM/yyyy");
                             for (int i = 0; i < 7; i++) {
                                 out.print("<th class='date'>" + df.format(cal.getTime()) + "</th>");
