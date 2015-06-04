@@ -17,7 +17,7 @@ public class Room implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private Long roomNro;
+    private int roomNro;
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<Reservation> reservations;
 
@@ -33,11 +33,11 @@ public class Room implements Serializable {
         this.id = id;
     }
 
-    public Long getRoomNro() {
+    public int getRoomNro() {
         return roomNro;
     }
 
-    public void setRoomNro(Long roomNro) {
+    public void setRoomNro(int roomNro) {
         this.roomNro = roomNro;
     }
 
