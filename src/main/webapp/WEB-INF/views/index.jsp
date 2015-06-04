@@ -21,6 +21,7 @@
                     <%
                         Calendar cal = Calendar.getInstance();
                         cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+                        cal.add(Calendar.DAY_OF_MONTH, 7 * (int)pageContext.getAttribute("week"));
                         DateFormat df = new SimpleDateFormat("EEE dd/MM/yyyy");
                         for (int i = 0; i < 7; i++) {
                             out.print("<th class='date'>" + df.format(cal.getTime()) + "</th>");

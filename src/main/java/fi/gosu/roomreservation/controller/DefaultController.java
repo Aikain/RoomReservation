@@ -16,13 +16,9 @@ public class DefaultController {
     @Autowired
     private RoomRepository roomRepository;
 
-    @RequestMapping(value = "index/{week}", method = RequestMethod.GET)
-    public String view(Model model, @PathVariable String week) {
-        if (week != null || week != "") {
-            model.addAttribute("week", Integer.parseInt(week));
-        } else {
-            model.addAttribute("week", 0);
-        }
+    @RequestMapping(value = "{week}", method = RequestMethod.GET)
+    public String view(Model model, @PathVariable int week) {
+        model.addAttribute("week", week);
         model.addAttribute("rooms", roomRepository.findAll(new Sort(Sort.Direction.ASC, "roomNro")));
         return "index";
     }
