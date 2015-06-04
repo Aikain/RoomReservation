@@ -1,14 +1,14 @@
 package fi.gosu.roomreservation.domain;
 
+import java.io.Serializable;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
-public class Room extends AbstractPersistable<Long> {
+public class Room implements Serializable {
 
     @Id
     private Long roomNro;
@@ -30,7 +30,5 @@ public class Room extends AbstractPersistable<Long> {
     public void setReservations(List<Reservation> reservations) {
         this.reservations = reservations;
     }
-    
-    
 
 }
