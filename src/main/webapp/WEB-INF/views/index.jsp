@@ -1,3 +1,6 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.DateFormat"%>
+<%@page import="java.util.Calendar"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -10,5 +13,28 @@
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/index.css' />" />
     </head>
     <body>
+        <table>
+            <tr>
+                <th>Huonenumero</th>
+                <%
+                    Calendar cal = Calendar.getInstance();
+                    cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+                    DateFormat df = new SimpleDateFormat("EEE dd/MM/yyyy");
+                    for (int i = 0; i < 7; i++) {
+                        out.print("<th>" + df.format(cal.getTime()) + "/th>");
+                        cal.add(Calendar.DATE, 1);
+                    }
+                %>
+            </tr>
+            <c:forEach var="room" items="${rooms}">
+                <tr>
+                    <td>${room.roomNro}</td>
+                </tr>
+            </c:forEach>
+        </table>
+        <form method="POST" action="room">
+            <input type="number" name="roomNro" placeholder="Huonenumero" />
+            <input type="submit" value="Lisää" />
+        </form>
     </body>
 </html>

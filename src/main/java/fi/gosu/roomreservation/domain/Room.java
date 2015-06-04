@@ -1,6 +1,7 @@
 package fi.gosu.roomreservation.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -14,6 +15,10 @@ public class Room implements Serializable {
     private Long roomNro;
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<Reservation> reservations;
+
+    public Room() {
+        this.reservations = new ArrayList<>();
+    }
 
     public Long getRoomNro() {
         return roomNro;
