@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -21,6 +22,7 @@ public class Reservation implements Serializable {
     private Date startTime;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private Date endTime;
+    @OneToMany
     private List<String> persons;
     @ManyToOne
     private Room room;
