@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 
 @Entity
 public class Room implements Serializable {
@@ -18,6 +19,7 @@ public class Room implements Serializable {
     private Long id;
 
     private int roomNro;
+    @OrderBy("startTime ASC")
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private List<Reservation> reservations;
 

@@ -50,7 +50,7 @@
                 <c:forEach var="room" items="${rooms}">
                     <c:if test="${room.roomNro % 100 == 1}">
                         <tr><td colspan="8" class="emptyRow"></td></tr>
-                    </c:if>
+                        </c:if>
                     <tr>
                         <td>${room.roomNro}</td>
                         <td colspan=7>
@@ -78,15 +78,14 @@
                 <input type="number" name="roomNro" placeholder="Huonenumero" />
                 <input type="submit" value="Lisää" />
             </form>
+        </div>
+        <div class="addReservation">
             <form method="POST" action="../room/1/addReservation">
                 <input type="text" name="person" placeholder="Nimi" />
                 <input type="datetime" name="startTime" placeholder="Saapumisaika" />
                 <input type="datetime" name="endTime" placeholder="Lähtöaika" />
                 <input type="submit" value="Lisää" />
-            </form>                
-        </div>
-        <div class="addReservation">
-
+            </form>
         </div>
     </body>
 </html>
