@@ -78,8 +78,10 @@
                                             width = 163 * 7 - left - oldwidth - 2;
                                         }
                                         out.print("<div class='reservation" + (n % 2 + 1) + "' style='left:" + left + "px;width:" + width + "px'>" + r.getPerson() + "</div>");
+                                        out.print(oldwidth);
                                         oldwidth += width;
                                     }
+                                    out.print(oldwidth);
                                     n++;
                                 }
                             %>
