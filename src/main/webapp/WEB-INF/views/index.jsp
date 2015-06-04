@@ -26,10 +26,11 @@
                 cal.set(Calendar.MINUTE, 0);
                 cal.set(Calendar.SECOND, 0);
                 cal.set(Calendar.HOUR_OF_DAY, 0);
+                Long weekStartTime = cal.getTimeInMillis();
                 if ((int) request.getAttribute("week") != 0) {
                     out.print("0");
                 } else {
-                    out.print("" + (63 + (System.currentTimeMillis() - cal.getTimeInMillis()) * 163 * 7 / 604800000));
+                    out.print("" + (63 + (System.currentTimeMillis() - weekStartTime) * 163 * 7 / 604800000));
                 }
                  %>px"></div>
             <table>
@@ -58,6 +59,8 @@
                                 List<Reservation> reservations = ((Room) pageContext.getAttribute("room")).getReservations();
                                 Calendar now = Calendar.getInstance();
                                 int week = now.get(Calendar.WEEK_OF_YEAR) + (int) request.getAttribute("week");
+                                int n = 0;
+                                int oldwidth = 0;
                                 for (Reservation r : reservations) {
                                     Calendar call = Calendar.getInstance();
                                     call.setTimeInMillis(r.getStartTime().getTime());
@@ -66,8 +69,12 @@
                                     call2.setTimeInMillis(r.getEndTime().getTime());
                                     int endweek = call2.get(Calendar.WEEK_OF_YEAR);
                                     if (startweek <= week && endweek >= week) {
-                                        out.print("<div>" + r.getPerson() + "</div>");
+                                        Double width = 163 * 7 * (r.getEndTime().getTime() - r.getStartTime().getTime()) / 608400000.0;
+                                        Double left = 163 * 7 * (r.getStartTime().getTime() - weekStartTime) / 608400000.0 - oldwidth;
+                                        out.print("<div class='reservation" + (n % 2 + 1) + "' style='left:" + left + "px;width:" + width + "'>" + r.getPerson() + "</div>");
+                                        oldwidth += width;
                                     }
+                                    n++;
                                 }
                             %>
                         </td>
