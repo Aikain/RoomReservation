@@ -8,3 +8,6 @@ table, th, td {
 .date {
     width: 160px;
 }
+.emptyRow {
+    background: grey;
+}

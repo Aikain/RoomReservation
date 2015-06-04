@@ -16,17 +16,20 @@
         <table>
             <tr>
                 <th class='roomNro'>Huone</th>
-                <%
-                    Calendar cal = Calendar.getInstance();
-                    cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
-                    DateFormat df = new SimpleDateFormat("EEE dd/MM/yyyy");
-                    for (int i = 0; i < 7; i++) {
-                        out.print("<th class='date'>" + df.format(cal.getTime()) + "</th>");
-                        cal.add(Calendar.DATE, 1);
-                    }
-                %>
+                    <%
+                        Calendar cal = Calendar.getInstance();
+                        cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+                        DateFormat df = new SimpleDateFormat("EEE dd/MM/yyyy");
+                        for (int i = 0; i < 7; i++) {
+                            out.print("<th class='date'>" + df.format(cal.getTime()) + "</th>");
+                            cal.add(Calendar.DATE, 1);
+                        }
+                    %>
             </tr>
             <c:forEach var="room" items="${rooms}">
+                <c:if test="${room.roomNro.toString.slice(-1)} == 1">
+                    <tr><td rowspan="8" class="emptyRow"></td><tr>
+                </c:if>
                 <tr>
                     <td>${room.roomNro}</td>
                 </tr>
