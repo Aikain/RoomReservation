@@ -15,8 +15,13 @@ public class DefaultController {
 
     @Autowired
     private RoomRepository roomRepository;
+    
+    @RequestMapping(method = RequestMethod.GET)
+    public String redirect() {
+        return "redirect:/index/0";
+    }
 
-    @RequestMapping(value = "{week}", method = RequestMethod.GET)
+    @RequestMapping(value = "index/{week}", method = RequestMethod.GET)
     public String view(Model model, @PathVariable int week) {
         model.addAttribute("week", week);
         model.addAttribute("rooms", roomRepository.findAll(new Sort(Sort.Direction.ASC, "roomNro")));

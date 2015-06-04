@@ -27,7 +27,7 @@ public class RoomController {
     @RequestMapping(method = RequestMethod.POST)
     public String createRoom(@ModelAttribute Room room) {
         roomRepository.save(room);
-        return "redirect:/0";
+        return "redirect:/index/0";
     }
 
     @Transactional
@@ -37,7 +37,7 @@ public class RoomController {
         reservation.setRoom(room);
         reservation = reservationRepository.save(reservation);
         room.getReservations().add(reservation);
-        return "redirect:/0";
+        return "redirect:/index/0";
     }
 
     @Transactional
