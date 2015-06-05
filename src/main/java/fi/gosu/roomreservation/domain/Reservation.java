@@ -58,11 +58,11 @@ public class Reservation implements Serializable {
         this.endTime = endTime;
     }
 
-    public List<Person> getPerson() {
+    public List<Person> getPersons() {
         return persons;
     }
 
-    public void setPerson(List<Person> persons) {
+    public void setPersons(List<Person> persons) {
         this.persons = persons;
     }
 

@@ -1,9 +1,10 @@
 <%@page import="fi.gosu.roomreservation.domain.Room"%>
-<%@page import="java.util.List"%>
+<%@page import="fi.gosu.roomreservation.domain.Person"%>
 <%@page import="fi.gosu.roomreservation.domain.Reservation"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="java.text.DateFormat"%>
 <%@page import="java.util.Calendar"%>
+<%@page import="java.util.List"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -12,9 +13,13 @@
     <head>
         <title>RoomReservation</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script type="text/javascript" charset="UTF-8" src="<c:url value='/resources/libraries/jquery-2.1.1.min.js' />"></script>       
+        <script type="text/javascript" charset="UTF-8" src="<c:url value='/resources/libraries/jquery.min.js' />"></script>       
+        <script type="text/javascript" charset="UTF-8" src="<c:url value='/resources/libraries/jquery-ui.min.js' />"></script>       
+        <script type="text/javascript" charset="UTF-8" src="<c:url value='/resources/libraries/jquery-ui-timepicker-addon.js' />"></script>
         <script type="text/javascript" charset="UTF-8" src="<c:url value='/resources/index.js' />"></script>
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/index.css' />" />
+        <link rel="stylesheet" type="text/css" href="<c:url value='/resources/libraries/jquery-ui.min.css' />" />
+        <link rel="stylesheet" type="text/css" href="<c:url value='/resources/libraries/jquery-ui-timepicker-addon.css' />" />
     </head>
     <body>
         <div class="reservationTable">
@@ -78,7 +83,11 @@
                                         if (left + width + oldwidth > 163 * 7 - 2) {
                                             width = 163 * 7 - left - oldwidth - 2;
                                         }
-                                        out.print("<div class='reservation" + (n % 2 + 1) + "' style='left:" + left + "px;width:" + width + "px'>" + r.getPerson() + "</div>");
+                                        String persons = " ";
+                                        for (Person p : r.getPersons()) {
+                                            persons += p.getName();
+                                        }
+                                        out.print("<div class='reservation" + (n % 2 + 1) + "' style='left:" + left + "px;width:" + width + "px'>" + persons + "</div>");
                                         oldwidth += width;
                                     }
                                     n++;
@@ -94,25 +103,24 @@
             </form>
         </div>
         <div class="addReservation">
-            <form id="addReservationForm" method="POST" action="../room/1/addReservation">
+            <form id="addReservationForm" method="POST" action="../room/0/addReservation" modelAttribute="reservation">
                 <table>
                     <tbody>
+                        <tr><td colspan=2 width="150px"><input type="text" name="persons[0].name" placeholder="Nimi" /></td></tr>
+                        <tr><td colspan=2 width="150px"><input type="text" name="persons[1].name" placeholder="Nimi" /></td></tr>
                         <tr>
-                            <td><input type="text" name="persons0.name" placeholder="Nimi" /></td>
-                        </tr>
-                        <tr>
-                            <td>Huone: </td>
+                            <td width="96px">Huone: </td>
                             <td>
-                                <select>
+                                <select id="selectedRoomNro">
                                     <c:forEach var="room" items="${rooms}">
-                                        <option id="selectedRoomNro" value="${room.id}">${room.roomNro}</option>
+                                        <option value="${room.id}">${room.roomNro}</option>
                                     </c:forEach>
                                 </select>
                             </td>
                         </tr>
-                        <tr><td><input type="datetime" name="startTime" placeholder="Saapumisaika" /></td></tr>
-                        <tr><td><input type="datetime" name="endTime" placeholder="Lähtöaika" /></td></tr>
-                        <tr><td><input type="submit" value="Lisää" /></td></tr>
+                        <tr><td colspan=2><input type="text" name="startTime" placeholder="Saapumisaika" /></td></tr>
+                        <tr><td colspan=2><input type="text" name="endTime" placeholder="Lähtöaika" /></td></tr>
+                        <tr><td colspan=2><input type="submit" value="Lisää" /></td></tr>
                     </tbody>
                 </table>
             </form>

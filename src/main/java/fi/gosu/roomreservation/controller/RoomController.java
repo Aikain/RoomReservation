@@ -1,9 +1,9 @@
 package fi.gosu.roomreservation.controller;
 
-import fi.gosu.roomreservation.domain.Reservation;
-import fi.gosu.roomreservation.domain.Room;
-import fi.gosu.roomreservation.repository.ReservationRepository;
-import fi.gosu.roomreservation.repository.RoomRepository;
+import fi.gosu.roomreservation.domain.*;
+import fi.gosu.roomreservation.repository.*;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +22,9 @@ public class RoomController {
     private RoomRepository roomRepository;
 
     @Autowired
+    private PersonRepository personRepository;
+
+    @Autowired
     private ReservationRepository reservationRepository;
 
     @RequestMapping(method = RequestMethod.POST)
@@ -32,7 +35,12 @@ public class RoomController {
 
     @Transactional
     @RequestMapping(value = "{id}/addReservation", method = RequestMethod.POST)
-    public String addReservation(@PathVariable Long id, @ModelAttribute Reservation reservation) {
+    public String addReservation(@PathVariable Long id, @ModelAttribute("reservation") Reservation reservation) {
+        List<Person> persons = new ArrayList<>();
+        for (Person person : reservation.getPersons()) {
+            persons.add(personRepository.save(person));
+        }
+        reservation.setPersons(persons);
         Room room = roomRepository.findOne(id);
         reservation.setRoom(room);
         reservation = reservationRepository.save(reservation);

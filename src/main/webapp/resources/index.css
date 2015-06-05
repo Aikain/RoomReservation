@@ -34,11 +34,13 @@ table, th, td {
     background: greenyellow;
     position: relative;
     float: left;
+    height: 18px;
 }
 .reservation2 {
     background: yellow;
     position: relative;
     float: left;
+    height: 18px;
 }
 .today {
     position: absolute;
