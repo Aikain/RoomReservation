@@ -103,7 +103,7 @@
             </form>
         </div>
         <div class="addReservation">
-            <form id="addReservationForm" method="POST" action="../room/0/addReservation" modelAttribute="reservation">
+            <form id="addReservationForm" method="POST" action="#" modelAttribute="reservation">
                 <table>
                     <tbody>
                         <tr><td colspan=2 width="150px"><input type="text" name="persons[0].name" placeholder="Nimi" /></td></tr>
