@@ -85,10 +85,10 @@
                                         }
                                         String persons = "";
                                         for (Person p : r.getPersons()) {
-                                            persons += p.getName() + ",";
+                                            persons += p.getName() + ", ";
                                         }
-                                        persons = persons.substring(0, persons.length() - 1);
-                                        out.print("<div class='reservation" + (n % 2 + 1) + "' style='left:" + left + "px;width:" + width + "px'>" + persons + "</div>");
+                                        persons = persons.substring(0, persons.length() - 2);
+                                        out.print("<div class='reservation bg" + (n % 2 + 1) + "' style='left:" + left + "px;width:" + width + "px'>" + persons + "</div>");
                                         oldwidth += width;
                                     }
                                     n++;
@@ -121,6 +121,9 @@
                                 </select>
                             </td>
                         </tr>
+                        <tr><td colspan=2><input type="text" name="startTime" placeholder="Saapumisaika" /></td></tr>
+                        <tr><td colspan=2><input type="text" name="endTime" placeholder="Lähtöaika" /></td></tr>
+                        <tr><td colspan=2><input type="submit" value="Lisää" /></td></tr>
                     </tbody>
                 </table>
             </form>

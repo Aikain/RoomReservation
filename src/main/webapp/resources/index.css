@@ -10,7 +10,6 @@
 .reservationTable {
     width: 1250px;
     position: relative;
-//    float: left;
 }
 table, th, td {
     border: 1px solid black;
@@ -35,21 +34,20 @@ table, th, td {
 .previousWeek {
     border: 0px;
 }
-.reservation1 {
+.bg1 {
     background: greenyellow;
-    position: relative;
-    float: left;
-    height: 18px;
-    text-overflow: ellipsis;
-    overflow: hidden;
 }
-.reservation2 {
+.bg2 {
     background: yellow;
+}
+.reservation {
     position: relative;
     float: left;
     height: 18px;
     text-overflow: ellipsis;
     overflow: hidden;
+    white-space: nowrap;
+    padding-left: 3px;
 }
 .today {
     position: absolute;
