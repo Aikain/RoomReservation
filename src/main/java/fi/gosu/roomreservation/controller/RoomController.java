@@ -37,23 +37,9 @@ public class RoomController {
     @RequestMapping(value = "{id}/addReservation", method = RequestMethod.POST)
     public String addReservation(@PathVariable Long id, @ModelAttribute("reservation") Reservation reservation) {
         List<Person> persons = new ArrayList<>();
-        System.out.println(reservation);
-        System.out.println(reservation.getRoom());
-        System.out.println(reservation.getId());
-        System.out.println(reservation.getStartTime());
-        System.out.println(reservation.getEndTime());
-        System.out.println(reservation.getPersons());
-        System.out.println(reservation);
+        reservation.setId(null);
         for (Person person : reservation.getPersons()) {
-            System.out.println(person);
-            System.out.println(person.getId());
-            System.out.println(person.getName());
-            System.out.println(person.getReservation());
             persons.add(personRepository.save(person));
-            System.out.println(person);
-            System.out.println(person.getId());
-            System.out.println(person.getName());
-            System.out.println(person.getReservation());
         }
         reservation.setPersons(persons);
         Room room = roomRepository.findOne(id);
