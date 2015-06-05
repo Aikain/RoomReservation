@@ -20,6 +20,7 @@ public class Room implements Serializable {
     private Long id;
 
     private int roomNro;
+    private int maxPersonCount;
     @OrderBy("startTime ASC")
     @JoinColumn(name = "Room_Reservation", unique = false)
     @OneToMany(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
@@ -43,6 +44,14 @@ public class Room implements Serializable {
 
     public void setRoomNro(int roomNro) {
         this.roomNro = roomNro;
+    }
+
+    public int getMaxPersonCount() {
+        return maxPersonCount;
+    }
+
+    public void setMaxPersonCount(int maxPersonCount) {
+        this.maxPersonCount = maxPersonCount;
     }
 
     public List<Reservation> getReservations() {

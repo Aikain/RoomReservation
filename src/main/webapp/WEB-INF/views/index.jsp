@@ -58,7 +58,7 @@
                         <tr><td colspan="8" class="emptyRow"></td></tr>
                         </c:if>
                     <tr>
-                        <td>${room.roomNro}</td>
+                        <td>${room.roomNro} (${room.maxPersonCount})</td>
                         <td colspan=7>
                             <%
                                 List<Reservation> reservations = ((Room) pageContext.getAttribute("room")).getReservations();
@@ -83,10 +83,11 @@
                                         if (left + width + oldwidth > 163 * 7 - 2) {
                                             width = 163 * 7 - left - oldwidth - 2;
                                         }
-                                        String persons = " ";
+                                        String persons = "";
                                         for (Person p : r.getPersons()) {
-                                            persons += p.getName();
+                                            persons += p.getName() + ",";
                                         }
+                                        persons = persons.substring(0, persons.length() - 1);
                                         out.print("<div class='reservation" + (n % 2 + 1) + "' style='left:" + left + "px;width:" + width + "px'>" + persons + "</div>");
                                         oldwidth += width;
                                     }
@@ -99,6 +100,7 @@
             </table>
             <form method="POST" action="../room">
                 <input type="number" name="roomNro" placeholder="Huonenumero" />
+                <input type="number" name="maxPersonCount" placeholder="Max asukas määrä" />
                 <input type="submit" value="Lisää" />
             </form>
         </div>
@@ -106,21 +108,17 @@
             <form id="addReservationForm" method="POST" action="#" modelAttribute="reservation">
                 <table>
                     <tbody>
-                        <tr><td colspan=2 width="150px"><input type="text" name="persons[0].name" placeholder="Nimi" /></td></tr>
-                        <tr><td colspan=2 width="150px"><input type="text" name="persons[1].name" placeholder="Nimi" /></td></tr>
                         <tr>
                             <td width="96px">Huone: </td>
                             <td>
                                 <select id="selectedRoomNro">
+                                    <option>---</option>
                                     <c:forEach var="room" items="${rooms}">
                                         <option value="${room.id}">${room.roomNro}</option>
                                     </c:forEach>
                                 </select>
                             </td>
                         </tr>
-                        <tr><td colspan=2><input type="text" name="startTime" placeholder="Saapumisaika" /></td></tr>
-                        <tr><td colspan=2><input type="text" name="endTime" placeholder="Lähtöaika" /></td></tr>
-                        <tr><td colspan=2><input type="submit" value="Lisää" /></td></tr>
                     </tbody>
                 </table>
             </form>
