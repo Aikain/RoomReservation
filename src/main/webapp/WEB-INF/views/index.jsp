@@ -100,6 +100,7 @@
             </table>
         </div>
         <div class="addRoom">
+            Lisää huone:
             <form method="POST" action="../room">
                 <input type="number" name="roomNro" placeholder="Huonenumero" />
                 <input type="number" name="maxPersonCount" placeholder="Max asukas määrä" />
@@ -107,6 +108,7 @@
             </form>
         </div>
         <div class="addReservation">
+            Lisää varaus:
             <form id="addReservationForm" method="POST" action="#" modelAttribute="reservation">
                 <table>
                     <tbody>
