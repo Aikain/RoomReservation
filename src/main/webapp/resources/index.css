@@ -1,11 +1,16 @@
 .addReservation {
     float: left;
     position: relative;
+    padding: 10px;
+}
+.addRoom {
+    position: relative;
+    padding: 10px;
 }
 .reservationTable {
     width: 1250px;
     position: relative;
-    float: left;
+//    float: left;
 }
 table, th, td {
     border: 1px solid black;
@@ -35,18 +40,22 @@ table, th, td {
     position: relative;
     float: left;
     height: 18px;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 .reservation2 {
     background: yellow;
     position: relative;
     float: left;
     height: 18px;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 .today {
     position: absolute;
     background-color: #000000;
     width: 1px;
-    height: 100%;
     top: 42px;
-    z-index: 1
+    bottom: 0px;
+    z-index: 1;
 }

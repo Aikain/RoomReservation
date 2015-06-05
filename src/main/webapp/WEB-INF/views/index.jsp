@@ -98,6 +98,8 @@
                     </tr>
                 </c:forEach>
             </table>
+        </div>
+        <div class="addRoom">
             <form method="POST" action="../room">
                 <input type="number" name="roomNro" placeholder="Huonenumero" />
                 <input type="number" name="maxPersonCount" placeholder="Max asukas määrä" />
@@ -108,13 +110,13 @@
             <form id="addReservationForm" method="POST" action="#" modelAttribute="reservation">
                 <table>
                     <tbody>
-                        <tr>
+                        <tr id="roomSelect">
                             <td width="96px">Huone: </td>
                             <td>
-                                <select id="selectedRoomNro">
+                                <select id="selectedRoomNro" onchange="showForm()">
                                     <option>---</option>
                                     <c:forEach var="room" items="${rooms}">
-                                        <option value="${room.id}">${room.roomNro}</option>
+                                        <option value="${room.id}" maxpersoncount="${room.maxPersonCount}">${room.roomNro}</option>
                                     </c:forEach>
                                 </select>
                             </td>
