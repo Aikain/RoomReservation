@@ -23,7 +23,7 @@
     </head>
     <body>
         <div class="reservationTable">
-            <div class="today" style="left:<%
+            <div class="today non-printable" style="left:<%
                 Calendar cal = Calendar.getInstance();
                 cal.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
                 cal.add(Calendar.DAY_OF_MONTH, 7 * (int) request.getAttribute("week"));
@@ -38,8 +38,8 @@
                     out.print("" + (63 + (System.currentTimeMillis() - weekStartTime) * 163 * 7 / 604800000));
                 }
                  %>px"></div>
-            <table>
-                <tr>
+            <table id="reservationTable">
+                <tr class="non-printable">
                     <td class='previousWeek' colspan=7><a href="${week -1 }">Edellinen viikko</a></td>
                     <td class='nextWeek'><a href="${week + 1}">Seuraava viikko</a></td>
                 </tr>
@@ -99,16 +99,20 @@
                 </c:forEach>
             </table>
         </div>
-        <div class="addRoom">
-            Lisää huone:
+        <div class="addRoom non-printable">
+            <h3>Lisää huone:</h3>
             <form method="POST" action="../room">
-                <input type="number" name="roomNro" placeholder="Huonenumero" />
-                <input type="number" name="maxPersonCount" placeholder="Max asukas määrä" />
-                <input type="submit" value="Lisää" />
+                <table>
+                    <tbody>
+                        <tr><td><input type="number" name="roomNro" placeholder="Huonenumero" /></td></tr>
+                        <tr><td><input type="number" name="maxPersonCount" placeholder="Max asukasmäärä" /></td></tr>
+                        <tr><td><input type="submit" value="Lisää" /></td></tr>
+                    </tbody>
+                </table>
             </form>
         </div>
-        <div class="addReservation">
-            Lisää varaus:
+        <div class="addReservation non-printable">
+            <h3>Lisää varaus:</h3>
             <form id="addReservationForm" method="POST" action="#" modelAttribute="reservation">
                 <table>
                     <tbody>
@@ -130,5 +134,25 @@
                 </table>
             </form>
         </div>
-    </body>
+        <div class="print non-printable">
+            <h3>Tulostus:</h3>
+            <form>
+                <table>
+                    <tbody>
+                        <tr><td><input type="submit" value="Tulosta" onclick="window.print()" /></td></tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+        <div class="notes non-printable">
+            <h3>HUOM!</h3>
+                <table>
+                    <tbody>
+                        <tr><td>Chrome:</td><td>Tulosta-nappi toimii ja asetukset automaattisesti oikein.</td></tr>
+                        <tr><td>Firefox:</td><td>Avaa valikko -> Tulosta -> Sivun asetukset. Valitse "Vaaka" ja rastita "Tulosta tausta".</td></tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+     </body>
 </html>

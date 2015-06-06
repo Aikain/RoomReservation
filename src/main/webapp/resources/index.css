@@ -1,19 +1,33 @@
+body {
+    -webkit-print-color-adjust:exact;
+}
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
 .addReservation {
     float: left;
     position: relative;
     padding: 10px;
 }
 .addRoom {
+    float: left;
+    position: relative;
+    padding: 10px;
+}
+.print {
+    float: left;
+    position: relative;
+    padding: 10px;
+}
+.notes {
+    float: left;
     position: relative;
     padding: 10px;
 }
 .reservationTable {
     width: 1250px;
     position: relative;
-}
-table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
 }
 .roomNro {
     width: 60px;
@@ -56,4 +70,18 @@ table, th, td {
     top: 42px;
     bottom: 0px;
     z-index: 1;
+}
+@media print {
+    @page {
+        size: landscape;
+    }
+    .non-printable { 
+        display: none !important; 
+    }
+    .bg1 {
+        background-color: darkgray;
+    }
+    .bg2 {
+        background-color: lightgray;
+    }
 }

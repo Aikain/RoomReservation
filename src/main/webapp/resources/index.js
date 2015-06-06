@@ -23,6 +23,7 @@ $(window).load(function() {
   $("input[name=endTime]").on("change", function (e) {
     $("input[name=startTime]").data().datepicker.settings.maxDate =  $("input[name=endTime]").val();
   });
+  $("#ui-datepicker-div").addClass("non-printable");
 });
 function showForm() {
   $("#roomSelect").nextAll().find("input[name*='persons']").closest("tr").remove();
