@@ -59,9 +59,9 @@
             <hr /><br />
         </div>
         <div class="weekController non-printable">
-            <button class="weekControllerButton preButton" onclick="location.href = ${week - 1}">&lt;&lt;&lt;Edellinen viikko</button>
+            <button class="weekControllerButton preButton" onclick="location.href = ${week - 1}">&lt;&lt;&lt; Edellinen viikko</button>
             <button class="weekControllerButton nowButton" onclick="location.href = 0">Nyt</button>
-            <button class="weekControllerButton nextButton" onclick="location.href = ${week + 1}">Seuraava viikko&gt;&gt;&gt;</button>
+            <button class="weekControllerButton nextButton" onclick="location.href = ${week + 1}">Seuraava viikko &gt;&gt;&gt;</button>
         </div>
         <div class="reservationTable">
             <div class="today non-printable" style="left:<%
