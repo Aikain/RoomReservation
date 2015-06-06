@@ -35,7 +35,7 @@ $(window).load(function () {
             }
         }
     });
-    $("#dialog-addReservation").dialog({autoOpen: false, height: 300, width: 350, modal: true,
+    $("#dialog-addReservation").dialog({autoOpen: false, height: 500, width: 350, modal: true,
         buttons: {
             "Lisää": function () {
                 $(this).children().submit()
@@ -47,7 +47,7 @@ $(window).load(function () {
     });
 });
 function addPersonField() {
-    $("#selectedRoomNro").nextAll().find("input[name*='persons']").closest("tr").remove();
+    $("#selectedRoomNro").parent().find("label[for=persons], input[name*='persons']").remove();
     for (var i = $("#selectedRoomNro option:selected").attr("maxpersoncount") - 1; i >= 0; i--) {
         $("#selectedRoomNro").after('<input type="text" name="persons[' + i + '].name" class="text ui-widget-content ui-corner-all" />');
     }
