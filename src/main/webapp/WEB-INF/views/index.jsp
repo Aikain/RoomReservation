@@ -56,6 +56,12 @@
             <button class="topButton" onclick="showReservationForm()">Lisää huonevaraus</button>
             <button class="topButton" onclick="window.print()">Tulosta</button>
             <button class="topButton" onclick="showNotes()">Huomautukset</button>
+            <hr /><br />
+        </div>
+        <div class="weekController non-printable">
+            <button class="weekControllerButton preButton" onclick="location.href = ${week - 1}">&lt;&lt;&lt;Edellinen viikko</button>
+            <button class="weekControllerButton nowButton" onclick="location.href = 0">Nyt</button>
+            <button class="weekControllerButton nextButton" onclick="location.href = ${week + 1}">Seuraava viikko&gt;&gt;&gt;</button>
         </div>
         <div class="reservationTable">
             <div class="today non-printable" style="left:<%
@@ -74,10 +80,6 @@
                 }
                  %>px"></div>
             <table id="reservationTable">
-                <tr class="non-printable">
-                    <td class='previousWeek' colspan=7><a href="${week -1 }">Edellinen viikko</a></td>
-                    <td class='nextWeek'><a href="${week + 1}">Seuraava viikko</a></td>
-                </tr>
                 <tr>
                     <th class='roomNro'>Huone</th>
                         <%

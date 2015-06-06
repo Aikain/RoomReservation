@@ -23,6 +23,22 @@ table, th, td {
     font-size: 16px;
     font-weight: 900;
 }
+.weekController {
+    text-align: center;
+}
+.weekControllerButton {
+    border-radius: 5px;
+    width: 150px;
+}
+.preButton {
+    margin-right: 420px;
+}
+.nowButton {
+    width: 50px !important;
+}
+.nextButton {
+    margin-left: 420px;
+}
 .reservationTable {
     width: 1205px;
     position: relative;
