@@ -1,8 +1,4 @@
 $(window).load(function () {
-    $('#addReservationForm').submit(function () {
-        $(this).attr('action', '../room/' + $('#selectedRoomNro').val() + '/addReservation');
-        $(this).submit();
-    });
     $.fn.textWidth = function () {
         var text = $(this).html();
         $(this).html('<span>' + text + '</span>');
@@ -28,7 +24,7 @@ $(window).load(function () {
         autoOpen: false, height: 300, width: 350, modal: true,
         buttons: {
             "Lisää": function () {
-                $(this).children().submit()
+                $(this).children().submit();
             },
             "Peruuta": function () {
                 $(this).dialog("close");
@@ -38,7 +34,8 @@ $(window).load(function () {
     $("#dialog-addReservation").dialog({autoOpen: false, height: 500, width: 350, modal: true,
         buttons: {
             "Lisää": function () {
-                $(this).children().submit()
+                $(this).children().attr('action', '../room/' + $('#selectedRoomNro').val() + '/addReservation');
+                $(this).children().submit();
             },
             "Peruuta": function () {
                 $(this).dialog("close");
