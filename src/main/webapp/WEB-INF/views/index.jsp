@@ -25,10 +25,10 @@
         <div id="dialog-addRoom" class="non-printable" title="Lisää huone">
             <form method="POST" action="../room">
                 <fieldset>
-                    <label for="roomNro">Huonenumero</label>
-                    <input type="text" name="roomNro" class="text ui-widget-content ui-corner-all">
-                    <label for="maxPersonCount">Max asukamäärä</label>
-                    <input type="text" name="maxPersonCount" class="text ui-widget-content ui-corner-all">
+                    <label for="roomNro">Huonenumero</label><br />
+                    <input type="number" name="roomNro" class="number ui-widget-content ui-corner-all"><br />
+                    <label for="maxPersonCount">Max asukamäärä</label><br />
+                    <input type="number" name="maxPersonCount" class="number ui-widget-content ui-corner-all"><br />
                     <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
                 </fieldset>
             </form>
