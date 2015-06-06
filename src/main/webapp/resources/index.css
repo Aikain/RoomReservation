@@ -1,29 +1,18 @@
 body {
     -webkit-print-color-adjust:exact;
+    min-width: 1250px;
 }
 table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
 }
-.addReservation {
-    float: left;
-    position: relative;
+.topButton {
     padding: 10px;
-}
-.addRoom {
-    float: left;
-    position: relative;
-    padding: 10px;
-}
-.print {
-    float: left;
-    position: relative;
-    padding: 10px;
-}
-.notes {
-    float: left;
-    position: relative;
-    padding: 10px;
+    margin: 10px;
+    width: 250px;
+    border-radius: 15px;
+    font-size: 16px;
+    font-weight: 900;
 }
 .reservationTable {
     width: 1250px;
