@@ -24,17 +24,26 @@ $(window).load(function () {
         $("input[name=startTime]").data().datepicker.settings.maxDate = $("input[name=endTime]").val();
     });
     $("#ui-datepicker-div").addClass("non-printable");
-    $( "#dialog-addRoom" ).dialog({
-      autoOpen: false,
-      height: 300,
-      width: 350,
-      modal: true,
+    $("#dialog-addRoom").dialog({
+        autoOpen: false, height: 300, width: 350, modal: true,
+        buttons: {
+            "Lisää": function () {
+                console.log("Mui")
+            },
+            "Peruuta": function () {
+                dialog.dialog("close");
+            }
+        }
     });
-    $( "#dialog-addReservation" ).dialog({
-      autoOpen: false,
-      height: 300,
-      width: 350,
-      modal: true,
+    $("#dialog-addReservation").dialog({autoOpen: false, height: 300, width: 350, modal: true,
+        buttons: {
+            "Lisää": function () {
+                console.log("Mui")
+            },
+            "Peruuta": function () {
+                dialog.dialog("close");
+            }
+        }
     });
 });
 function showForm() {
@@ -43,4 +52,13 @@ function showForm() {
     for (var i = $("#selectedRoomNro option:selected").attr("maxpersoncount") - 1; i >= 0; i--) {
         $("#roomSelect").after('<input type="text" name="persons[' + i + '].name" class="text ui-widget-content ui-corner-all />');
     }
+}
+function showRoomForm() {
+    $("#dialog-addRoom").dialog("open")
+}
+function showReservationForm() {
+    $("#dialog-addReservation").dialog("open")
+}
+function showNotes() {
+    alert("Jos käytät firefoxia: Avaa valikko -> Tulosta -> Sivun asetukset. Valitse 'Vaaka' ja rastita 'Tulosta tausta'.");
 }

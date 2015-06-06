@@ -22,36 +22,34 @@
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/libraries/jquery-ui-timepicker-addon.css' />" />
     </head>
     <body>
-        <div class="non-printable">
-            <div id="dialog-addRoom" title="Lisää huone">
-                <form>
-                    <fieldset>
-                        <label for="roomNro">Huonenumero</label>
-                        <input type="text" name="roomNro" class="text ui-widget-content ui-corner-all">
-                        <label for="maxPersonCount">Max asukamäärä</label>
-                        <input type="text" name="maxPersonCount" class="text ui-widget-content ui-corner-all">
-                        <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
-                    </fieldset>
-                </form>
-            </div>
-            <div id="dialog-addReservation" title="Lisää huonevaraus">
-                <form>
-                    <fieldset>
-                        <label for="roomNro">Huonenumero</label>
-                        <select id="selectedRoomNro" onchange="showForm()">
-                            <option>---</option>
-                            <c:forEach var="room" items="${rooms}">
-                                <option value="${room.id}" maxpersoncount="${room.maxPersonCount}">${room.roomNro}</option>
-                            </c:forEach>
-                        </select>
-                        <label for="startTime">Saapumisaika</label>
-                        <input type="text" name="startTime" class="text ui-widget-content ui-corner-all">
-                        <label for="endTime">Lähtöaika</label>
-                        <input type="text" name="endTime" class="text ui-widget-content ui-corner-all">
-                        <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
-                    </fieldset>
-                </form>
-            </div>
+        <div id="dialog-addRoom" class="non-printable" title="Lisää huone">
+            <form>
+                <fieldset>
+                    <label for="roomNro">Huonenumero</label>
+                    <input type="text" name="roomNro" class="text ui-widget-content ui-corner-all">
+                    <label for="maxPersonCount">Max asukamäärä</label>
+                    <input type="text" name="maxPersonCount" class="text ui-widget-content ui-corner-all">
+                    <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+                </fieldset>
+            </form>
+        </div>
+        <div id="dialog-addReservation" class="non-printable" title="Lisää huonevaraus">
+            <form>
+                <fieldset>
+                    <label for="roomNro">Huonenumero</label>
+                    <select id="selectedRoomNro" onchange="showForm()">
+                        <option>---</option>
+                        <c:forEach var="room" items="${rooms}">
+                            <option value="${room.id}" maxpersoncount="${room.maxPersonCount}">${room.roomNro}</option>
+                        </c:forEach>
+                    </select>
+                    <label for="startTime">Saapumisaika</label>
+                    <input type="text" name="startTime" class="text ui-widget-content ui-corner-all">
+                    <label for="endTime">Lähtöaika</label>
+                    <input type="text" name="endTime" class="text ui-widget-content ui-corner-all">
+                    <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+                </fieldset>
+            </form>
         </div>
         <div class="non-printable">
             <button class="topButton" onclick="addRoom()">Lisää huone</button>
@@ -136,15 +134,6 @@
                 </c:forEach>
             </table>
         </div>
-        <div class="notes non-printable">
-            <h3>HUOM!</h3>
-            <table>
-                <tbody>
-                    <tr><td>Chrome:</td><td>Tulosta-nappi toimii ja asetukset automaattisesti oikein.</td></tr>
-                    <tr><td>Firefox:</td><td>Avaa valikko -> Tulosta -> Sivun asetukset. Valitse "Vaaka" ja rastita "Tulosta tausta".</td></tr>
-                </tbody>
-            </table>
-        </form>
     </div>
 </body>
 </html>
