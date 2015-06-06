@@ -23,7 +23,7 @@
     </head>
     <body>
         <div id="dialog-addRoom" class="non-printable" title="Lisää huone">
-            <form>
+            <form method="POST" action="../room">
                 <fieldset>
                     <label for="roomNro">Huonenumero</label>
                     <input type="text" name="roomNro" class="text ui-widget-content ui-corner-all">
@@ -34,7 +34,7 @@
             </form>
         </div>
         <div id="dialog-addReservation" class="non-printable" title="Lisää huonevaraus">
-            <form>
+            <form id="addReservationForm" method="POST" action="#" modelAttribute="reservation">
                 <fieldset>
                     <label for="roomNro">Huonenumero</label>
                     <select id="selectedRoomNro" onchange="showForm()">

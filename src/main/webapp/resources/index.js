@@ -28,20 +28,20 @@ $(window).load(function () {
         autoOpen: false, height: 300, width: 350, modal: true,
         buttons: {
             "Lisää": function () {
-                console.log("Mui")
+                $(this).children().submit()
             },
             "Peruuta": function () {
-                dialog.dialog("close");
+                $(this).dialog("close");
             }
         }
     });
     $("#dialog-addReservation").dialog({autoOpen: false, height: 300, width: 350, modal: true,
         buttons: {
             "Lisää": function () {
-                console.log("Mui")
+                $(this).children().submit()
             },
             "Peruuta": function () {
-                dialog.dialog("close");
+                $(this).dialog("close");
             }
         }
     });
