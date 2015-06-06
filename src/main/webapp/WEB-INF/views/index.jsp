@@ -36,22 +36,22 @@
         <div id="dialog-addReservation" class="non-printable" title="Lisää huonevaraus">
             <form id="addReservationForm" method="POST" action="#" modelAttribute="reservation">
                 <fieldset>
-                    <label for="roomNro">Huonenumero</label>
+                    <label for="roomNro">Huonenumero</label><br />
                     <select id="selectedRoomNro" onchange="addPersonField()">
                         <option>---</option>
                         <c:forEach var="room" items="${rooms}">
                             <option value="${room.id}" maxpersoncount="${room.maxPersonCount}">${room.roomNro}</option>
                         </c:forEach>
-                    </select>
-                    <label for="startTime">Saapumisaika</label>
-                    <input type="text" name="startTime" class="text ui-widget-content ui-corner-all">
-                    <label for="endTime">Lähtöaika</label>
-                    <input type="text" name="endTime" class="text ui-widget-content ui-corner-all">
+                    </select><br />
+                    <label for="startTime">Saapumisaika</label><br />
+                    <input type="text" name="startTime" class="text ui-widget-content ui-corner-all"><br />
+                    <label for="endTime">Lähtöaika</label><br />
+                    <input type="text" name="endTime" class="text ui-widget-content ui-corner-all"><br />
                     <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
                 </fieldset>
             </form>
         </div>
-        <div class="non-printable">
+        <div class="topButtonDiv non-printable">
             <button class="topButton" onclick="showRoomForm()">Lisää huone</button>
             <button class="topButton" onclick="showReservationForm()">Lisää huonevaraus</button>
             <button class="topButton" onclick="window.print()">Tulosta</button>

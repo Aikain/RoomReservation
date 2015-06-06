@@ -45,10 +45,11 @@ $(window).load(function () {
 });
 function addPersonField() {
     $("#selectedRoomNro").parent().find("label[for=persons], input[name*='persons']").remove();
+    $("br + br").remove();
     for (var i = $("#selectedRoomNro option:selected").attr("maxpersoncount") - 1; i >= 0; i--) {
         $("#selectedRoomNro").after('<input type="text" name="persons[' + i + '].name" class="text ui-widget-content ui-corner-all" />');
     }
-    $("#selectedRoomNro").after("<label for='persons'>Asukkaat:</label>")
+    $("#selectedRoomNro").after("<br /><label for='persons'>Asukkaat:</label><br />")
 }
 function showRoomForm() {
     $("#dialog-addRoom").dialog("open")

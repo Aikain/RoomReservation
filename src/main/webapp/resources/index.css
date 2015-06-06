@@ -1,10 +1,19 @@
+html {
+    background-color: aliceblue;
+}
 body {
     -webkit-print-color-adjust:exact;
-    min-width: 1250px;
+    min-width: 1205px;
+    max-width: 1205px;
+    margin-left: auto;
+    margin-right: auto;
 }
 table, th, td {
     border: 1px solid black;
     border-collapse: collapse;
+}
+.topButtonDiv  {
+    text-align: center;
 }
 .topButton {
     padding: 10px;
@@ -15,8 +24,9 @@ table, th, td {
     font-weight: 900;
 }
 .reservationTable {
-    width: 1250px;
+    width: 1205px;
     position: relative;
+    background-color: white;
 }
 .roomNro {
     width: 60px;
