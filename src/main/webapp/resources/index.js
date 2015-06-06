@@ -46,12 +46,12 @@ $(window).load(function () {
         }
     });
 });
-function showForm() {
-    $("#roomSelect").nextAll().find("input[name*='persons']").closest("tr").remove();
-    $("#roomSelect").after("<label for='persons'>Asukkaat:</label>")
+function addPersonField() {
+    $("#selectedRoomNro").nextAll().find("input[name*='persons']").closest("tr").remove();
     for (var i = $("#selectedRoomNro option:selected").attr("maxpersoncount") - 1; i >= 0; i--) {
         $("#roomSelect").after('<input type="text" name="persons[' + i + '].name" class="text ui-widget-content ui-corner-all />');
     }
+    $("#selectedRoomNro").after("<label for='persons'>Asukkaat:</label>")
 }
 function showRoomForm() {
     $("#dialog-addRoom").dialog("open")
