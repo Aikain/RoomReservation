@@ -52,8 +52,8 @@
             </form>
         </div>
         <div class="non-printable">
-            <button class="topButton" onclick="addRoom()">Lisää huone</button>
-            <button class="topButton" onclick="addReservation()">Lisää huonevaraus</button>
+            <button class="topButton" onclick="showRoomForm()">Lisää huone</button>
+            <button class="topButton" onclick="showReservationForm()">Lisää huonevaraus</button>
             <button class="topButton" onclick="window.print()">Tulosta</button>
             <button class="topButton" onclick="showNotes()">Huomautukset</button>
         </div>
