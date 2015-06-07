@@ -34,7 +34,16 @@ $(window).load(function () {
     $("#dialog-addReservation").dialog({autoOpen: false, height: 500, width: 350, modal: true,
         buttons: {
             "Lisää": function () {
-                $(this).children().attr('action', '../room/' + $('#selectedRoomNro').val() + '/addReservation');
+                $(this).children().submit();
+            },
+            "Peruuta": function () {
+                $(this).dialog("close");
+            }
+        }
+    });
+    $("#dialog-updateReservation").dialog({autoOpen: false, height: 500, width: 350, modal: true,
+        buttons: {
+            "Päivitä": function () {
                 $(this).children().submit();
             },
             "Peruuta": function () {
@@ -51,11 +60,30 @@ function addPersonField() {
     }
     $("#selectedRoomNro").after("<br /><label for='persons'>Asukkaat:</label><br />")
 }
+function addPersonField2() {
+    $("#roomNro-update").parent().find("label[for=persons], input[name*='persons']").remove();
+    $("br + br").remove();
+    for (var i = $("#roomNro-update option:selected").attr("maxpersoncount") - 1; i >= 0; i--) {
+        $("#roomNro-update").after('<input id="person' + i + '-update" type="text" name="persons[' + i + '].name" class="text ui-widget-content ui-corner-all" />');
+    }
+    $("#roomNro-update").after("<br /><label for='persons'>Asukkaat:</label><br />")
+}
 function showRoomForm() {
     $("#dialog-addRoom").dialog("open")
 }
 function showReservationForm() {
     $("#dialog-addReservation").dialog("open")
+}
+function showUpdateRservationForm(id, roomNro, startTime, endTime, persons) {
+    $("#dialog-updateReservation").children().attr('action', '../reservation/' + id + '/update');
+    $("#roomNro-update").val(roomNro);
+    $("#startTime-update").val(startTime);
+    $("#endTime-update").val(endTime);
+    for (var i = 0; i < persons.length; i++) {
+        $("#person" + i + "-update").val(persons[i]);
+    }
+    $("#dialog-updateReservation").dialog("open");
+
 }
 function showNotes() {
     alert("Jos käytät firefoxia: Avaa valikko -> Tulosta -> Sivun asetukset. Valitse 'Vaaka' ja rastita 'Tulosta tausta'.");

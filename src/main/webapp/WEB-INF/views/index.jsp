@@ -34,19 +34,36 @@
             </form>
         </div>
         <div id="dialog-addReservation" class="non-printable" title="Lisää huonevaraus">
-            <form id="addReservationForm" method="POST" action="#" modelAttribute="reservation">
+            <form id="addReservationForm" method="POST" action="../reservation/" modelAttribute="reservation">
                 <fieldset>
                     <label for="roomNro">Huonenumero</label><br />
                     <select id="selectedRoomNro" onchange="addPersonField()">
                         <option>---</option>
                         <c:forEach var="room" items="${rooms}">
-                            <option value="${room.id}" maxpersoncount="${room.maxPersonCount}">${room.roomNro}</option>
+                            <option value="${room.id}" name="roomId" maxpersoncount="${room.maxPersonCount}">${room.roomNro}</option>
                         </c:forEach>
                     </select><br />
                     <label for="startTime">Saapumisaika</label><br />
                     <input type="text" name="startTime" class="text ui-widget-content ui-corner-all"><br />
                     <label for="endTime">Lähtöaika</label><br />
                     <input type="text" name="endTime" class="text ui-widget-content ui-corner-all"><br />
+                    <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+                </fieldset>
+            </form>
+        </div>
+        <div id="dialog-updateReservation" class="non-printable" title="Päivitä huonevaraus">
+            <form id="updateReservationForm" method="POST" action="#" modelAttribute="reservation">
+                <fieldset>
+                    <label for="roomNro">Huonenumero</label><br />
+                    <select id="roomNro-update" onchange="addPersonField2()">
+                        <c:forEach var="room" items="${rooms}">
+                            <option value="${room.id}" maxpersoncount="${room.maxPersonCount}">${room.roomNro}</option>
+                        </c:forEach>
+                    </select><br />
+                    <label for="startTime">Saapumisaika</label><br />
+                    <input id="startTime-update" type="text" name="startTime" class="text ui-widget-content ui-corner-all"><br />
+                    <label for="endTime">Lähtöaika</label><br />
+                    <input id="endTime-update" type="text" name="endTime" class="text ui-widget-content ui-corner-all"><br />
                     <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
                 </fieldset>
             </form>
