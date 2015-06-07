@@ -1,7 +1,5 @@
-html {
-    background-color: aliceblue;
-}
 body {
+    background-color: aliceblue;
     -webkit-print-color-adjust:exact;
     min-width: 1205px;
     max-width: 1205px;
@@ -98,5 +96,8 @@ table, th, td {
     }
     .bg2 {
         background-color: lightgray;
+    }
+    body {
+        background-color: transparent;
     }
 }
