@@ -55,7 +55,7 @@
             <form id="updateReservationForm" method="POST" action="#" modelAttribute="reservation">
                 <fieldset>
                     <label for="roomNro">Huonenumero</label><br />
-                    <select id="roomNro-update" onchange="addPersonField2()">
+                    <select name="roomId" id="roomNro-update" onchange="addPersonField2()">
                         <c:forEach var="room" items="${rooms}">
                             <option value="${room.id}" maxpersoncount="${room.maxPersonCount}">${room.roomNro}</option>
                         </c:forEach>
@@ -142,7 +142,8 @@
                                             persons += p.getName() + ", ";
                                         }
                                         persons = persons.substring(0, persons.length() - 2);
-                                        out.print("<div class='reservation bg" + (n % 2 + 1) + "' style='left:" + left + "px;width:" + width + "px'>" + persons + "</div>");
+                                        String ondbclick = "showUpdateReservationForm(" + r.getId() + ", " + r.getRoom().getId() + ", \"" + r.getStartTime() + "\", \"" + r.getEndTime() + "\", [\"" + persons.replace(", ", "\", \"") + "\"])";
+                                        out.print("<div ondblclick='" + ondbclick + "' class='reservation bg" + (n % 2 + 1) + "' style='left:" + left + "px;width:" + width + "px'>" + persons + "</div>");
                                         oldwidth += width;
                                     }
                                     n++;

@@ -51,6 +51,7 @@ $(window).load(function () {
             }
         }
     });
+    $("[onclick]").each(function(){$(this).click(function(){$(this).click;$(this).blur()})});
 });
 function addPersonField() {
     $("#selectedRoomNro").parent().find("label[for=persons], input[name*='persons']").remove();
@@ -74,11 +75,14 @@ function showRoomForm() {
 function showReservationForm() {
     $("#dialog-addReservation").dialog("open")
 }
-function showUpdateRservationForm(id, roomNro, startTime, endTime, persons) {
+function showUpdateReservationForm(id, roomNro, startTime, endTime, persons) {
     $("#dialog-updateReservation").children().attr('action', '../reservation/' + id + '/update');
     $("#roomNro-update").val(roomNro);
     $("#startTime-update").val(startTime);
     $("#endTime-update").val(endTime);
+    $("#endTime-update").data().datepicker.settings.minDate = startTime;
+    $("#startTime-update").data().datepicker.settings.maxDate = endTime
+    addPersonField2();
     for (var i = 0; i < persons.length; i++) {
         $("#person" + i + "-update").val(persons[i]);
     }
