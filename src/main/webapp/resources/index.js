@@ -29,7 +29,8 @@ $(window).load(function () {
             "Peruuta": function () {
                 $(this).dialog("close");
             }
-        }
+        },
+        close:function(){$("button").blur();}
     });
     $("#dialog-addReservation").dialog({autoOpen: false, height: 500, width: 350, modal: true,
         buttons: {
@@ -39,7 +40,8 @@ $(window).load(function () {
             "Peruuta": function () {
                 $(this).dialog("close");
             }
-        }
+        },
+        close:function(){$("button").blur();}
     });
     $("#dialog-updateReservation").dialog({autoOpen: false, height: 500, width: 350, modal: true,
         buttons: {
@@ -49,9 +51,9 @@ $(window).load(function () {
             "Peruuta": function () {
                 $(this).dialog("close");
             }
-        }
+        },
+        close:function(){$("button").blur();}
     });
-    $("[onclick]").each(function(){$(this).click(function(){$(this).click;$(this).blur()})});
 });
 function addPersonField() {
     $("#selectedRoomNro").parent().find("label[for=persons], input[name*='persons']").remove();
