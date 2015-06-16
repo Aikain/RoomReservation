@@ -31,8 +31,10 @@ public class ReservationController {
     @RequestMapping(method = RequestMethod.POST)
     public String createReservation(@ModelAttribute("reservation") Reservation reservation, @RequestParam Long roomId) {
         Room room = roomRepository.findOne(roomId);
+        if (!reservationRepository.findAsd(room, reservation.getStartTime(), reservation.getEndTime()).isEmpty()) {
+            return "redirect:/index/0";
+        }
         reservation.setRoom(room);
-        System.out.println(reservationRepository.findAsd(room, reservation.getStartTime(), reservation.getEndTime()));
         List<Person> persons = new ArrayList<>();
         reservation.setId(null);
         for (Person person : reservation.getPersons()) {
@@ -47,7 +49,13 @@ public class ReservationController {
     @Transactional
     @RequestMapping(value = "/{reservationId}/update", method = RequestMethod.POST)
     public String update(@PathVariable Long reservationId, @ModelAttribute("reservation") Reservation newReservation, @RequestParam Long roomId) {
+        Room newRoom = roomRepository.findOne(roomId);
         Reservation oldReservation = reservationRepository.findOne(reservationId);
+        List<Reservation> checkReservation = reservationRepository.findAsd(newRoom, newReservation.getStartTime(), newReservation.getEndTime());
+        checkReservation.remove(oldReservation);
+        if (!checkReservation.isEmpty()) {
+            return "redirect:/index/0";
+        }
         oldReservation.setStartTime(newReservation.getStartTime());
         oldReservation.setEndTime(newReservation.getEndTime());
         List<Person> newPersons = new ArrayList<>();
@@ -62,13 +70,12 @@ public class ReservationController {
         for (Person person : newReservation.getPersons()) {
             newPersons.add(personRepository.save(person));
         }
-        oldReservation.setPersons(newPersons);
         if (!Objects.equals(oldReservation.getRoom().getId(), roomId)) {
             oldReservation.getRoom().getReservations().remove(oldReservation);
-            Room newRoom = roomRepository.findOne(roomId);
             oldReservation.setRoom(newRoom);
             newRoom.getReservations().add(oldReservation);
         }
+        oldReservation.setPersons(newPersons);
         return "redirect:/index/0";
     }
 
