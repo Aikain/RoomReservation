@@ -30,6 +30,7 @@ public class ReservationController {
     @Transactional
     @RequestMapping(method = RequestMethod.POST)
     public String createReservation(@ModelAttribute("reservation") Reservation reservation, @RequestParam Long roomId) {
+        System.out.println(reservationRepository.findByStartTimeNotBetweenAndEndTimeNotBetween(reservation.getStartTime(), reservation.getEndTime(), reservation.getStartTime(), reservation.getEndTime()));
         List<Person> persons = new ArrayList<>();
         reservation.setId(null);
         for (Person person : reservation.getPersons()) {
