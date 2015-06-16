@@ -76,7 +76,7 @@ function addPersonField() {
 }
 function addPersonField2() {
     var names = new Array();
-    $.each($("#selectedRoomNro").parent().find("input[name*='person']"), function () {
+    $.each($("#roomNro-update").parent().find("input[name*='person']"), function () {
         names.push($(this).val());
     });
     console.log(names);
