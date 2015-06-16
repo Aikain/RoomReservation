@@ -38,12 +38,12 @@ table, th, td {
     margin-left: 420px;
 }
 .reservationTable {
-    width: 1205px;
+    width: 1225px;
     position: relative;
     background-color: white;
 }
 .roomNro {
-    width: 60px;
+    width: 80px;
 }
 .date {
     width: 160px;
@@ -99,5 +99,9 @@ table, th, td {
     }
     body {
         background-color: transparent;
+    }
+    .roomNro {
+        width: 80px;
+        text-align: center;
     }
 }

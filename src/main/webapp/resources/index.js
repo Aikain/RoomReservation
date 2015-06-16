@@ -61,6 +61,7 @@ $(window).load(function () {
         }
     });
 });
+var extraPerson = Array();
 function addPersonField() {
     var names = new Array();
     $.each($("#selectedRoomNro").parent().find("input[name*='person']"), function () {
@@ -68,19 +69,27 @@ function addPersonField() {
             names.push($(this).val());
         }
     });
-    console.log(names);
+    for (var i = 0; i < extraPerson.length; i++) {
+        names.push(extraPerson[i]);
+    }
     $("#selectedRoomNro").parent().find("label[for=persons], input[name*='persons']").remove();
     $("br + br").remove();
     for (var i = $("#selectedRoomNro option:selected").attr("maxpersoncount") - 1; i >= 0; i--) {
         $("#selectedRoomNro").after('<input id="person' + i + '-add" type="text" name="persons[' + i + '].name" class="text ui-widget-content ui-corner-all" />');
     }
     $("#selectedRoomNro").after("<br /><label for='persons'>Asukkaat:</label><br />");
+    extraPerson = Array();
     for (var i = 0; i < names.length; i++) {
         if ($("#person" + i + "-add").length) {
             $("#person" + i + "-add").val(names[i]);
         } else {
-            $("#addReservation-error").append("<u>" + names[i] + "</u> ei mahtunut huoneeseen!")
+            extraPerson.push(names[i]);
         }
+    }
+    if (extraPerson.length) {
+        $("#addReservation-error").html("<p>Seuraavat henkilöt eivät mahdu huoneeseen: " + extraPerson.join(", ") + "</p>");
+    } else {
+        $("#addReservation-error").html("");
     }
 }
 function addPersonField2() {
@@ -90,18 +99,27 @@ function addPersonField2() {
             names.push($(this).val());
         }
     });
+    for (var i = 0; i < extraPerson.length; i++) {
+        names.push(extraPerson[i]);
+    }
     $("#roomNro-update").parent().find("label[for=persons], input[name*='persons']").remove();
     $("br + br").remove();
     for (var i = $("#roomNro-update option:selected").attr("maxpersoncount") - 1; i >= 0; i--) {
         $("#roomNro-update").after('<input id="person' + i + '-update" type="text" name="persons[' + i + '].name" class="text ui-widget-content ui-corner-all" />');
     }
     $("#roomNro-update").after("<br /><label for='persons'>Asukkaat:</label><br />");
+    extraPerson = Array();
     for (var i = 0; i < names.length; i++) {
         if ($("#person" + i + "-update").length) {
             $("#person" + i + "-update").val(names[i]);
         } else {
-            $("#updateReservation-error").append("<u>" + names[i] + "</u> ei mahtunut huoneeseen!")
+            extraPerson.push(names[i]);
         }
+    }
+    if (extraPerson.length) {
+        $("#updateReservation-error").html("<p>Seuraavat henkilöt eivät mahdu huoneeseen: " + extraPerson.join(", ") + "</p>");
+    } else {
+        $("#updateReservation-error").html("");
     }
 }
 function showRoomForm() {
@@ -111,6 +129,8 @@ function showReservationForm() {
     $("#dialog-addReservation").dialog("open");
 }
 function showUpdateReservationForm(id, roomNro, startTime, endTime, persons) {
+    if (window.getSelection) window.getSelection().removeAllRanges();
+    else if (document.selection) document.selection.empty();
     $("#dialog-updateReservation").children().attr('action', '../reservation/' + id + '/update');
     $("#roomNro-update").val(roomNro);
     $("#startTime-update").val(startTime);
@@ -127,7 +147,13 @@ function showNotes(btn) {
     alert("Jos käytät firefoxia: Avaa valikko -> Tulosta -> Sivun asetukset. Valitse 'Vaaka' ja rastita 'Tulosta tausta'.");
     btn.blur();
 }
-function print(btn) {
+function printReservation(btn) {
+    $("td[colspan=7]:empty").closest("tr").addClass("non-printable");
+    $("input[type=checkbox][name*=selectedRoom]:checked").closest("tr").removeClass("non-printable");
     window.print();
+    $("td[colspan=7]:empty").closest("tr").removeClass("non-printable");
     btn.blur();
+}
+function selectAll(source, target) {
+    $("input[type=checkbox][name*=selectedRoom" + target + "]").prop("checked", source.checked);
 }

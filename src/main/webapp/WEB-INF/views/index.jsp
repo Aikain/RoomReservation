@@ -29,7 +29,7 @@
                     <input type="number" name="roomNro" class="number ui-widget-content ui-corner-all"><br />
                     <label for="maxPersonCount">Max asukamäärä</label><br />
                     <input type="number" name="maxPersonCount" class="number ui-widget-content ui-corner-all"><br />
-                    <p id="addRoom-error"></p>
+                    <div id="addRoom-error"></div>
                     <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
                 </fieldset>
             </form>
@@ -48,7 +48,7 @@
                     <input type="text" name="startTime" class="text ui-widget-content ui-corner-all"><br />
                     <label for="endTime">Lähtöaika</label><br />
                     <input type="text" name="endTime" class="text ui-widget-content ui-corner-all"><br />
-                    <p id="addReservation-error"></p>
+                    <div id="addReservation-error"></div>
                     <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
                 </fieldset>
             </form>
@@ -66,7 +66,7 @@
                     <input id="startTime-update" type="text" name="startTime" class="text ui-widget-content ui-corner-all"><br />
                     <label for="endTime">Lähtöaika</label><br />
                     <input id="endTime-update" type="text" name="endTime" class="text ui-widget-content ui-corner-all"><br />
-                    <p id="updateReservation-error"></p>
+                    <div id="updateReservation-error"></div>
                     <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
                 </fieldset>
             </form>
@@ -74,7 +74,7 @@
         <div class="topButtonDiv non-printable">
             <button class="topButton" onclick="showRoomForm()">Lisää huone</button>
             <button class="topButton" onclick="showReservationForm()">Lisää huonevaraus</button>
-            <button class="topButton" onclick="print($(this))">Tulosta</button>
+            <button class="topButton" onclick="printReservation($(this))">Tulosta</button>
             <button class="topButton" onclick="showNotes($(this))">Huomautukset</button>
             <hr /><br />
         </div>
@@ -111,13 +111,13 @@
                         %>
                 </tr>
                 <c:forEach var="room" items="${rooms}">
+                    <c:set var="roomGroupNro" scope="session" value="${Integer.parseInt(Integer.toString(room.roomNro).substring(0, 1))}"/>
                     <c:if test="${room.roomNro % 100 == 1}">
-                        <tr><td colspan="8" class="emptyRow"></td></tr>
-                        </c:if>
+                        <tr><td colspan="8" class="emptyRow"><input class="non-printable" type="checkbox" name="selectAll" onclick="selectAll(this, ${roomGroupNro})"/></td></tr>
+                    </c:if>
                     <tr>
-                        <td>${room.roomNro} (${room.maxPersonCount})</td>
-                        <td colspan=7>
-                            <%
+                        <td class="roomNro"><input class="non-printable" type="checkbox" name="selectedRoom${roomGroupNro}" />${room.roomNro} (${room.maxPersonCount})</td>
+                        <td colspan=7><%
                                 List<Reservation> reservations = ((Room) pageContext.getAttribute("room")).getReservations();
 
                                 int n = 0;
@@ -144,8 +144,7 @@
                                     }
                                     n++;
                                 }
-                            %>
-                        </td>
+                            %></td>
                     </tr>
                 </c:forEach>
             </table>
