@@ -6,7 +6,7 @@
 <%@page import="java.util.Calendar"%>
 <%@page import="java.util.List"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -17,13 +17,13 @@
         <script type="text/javascript" charset="UTF-8" src="<c:url value='/resources/libraries/jquery-ui.min.js' />"></script>       
         <script type="text/javascript" charset="UTF-8" src="<c:url value='/resources/libraries/jquery-ui-timepicker-addon.js' />"></script>
         <script type="text/javascript" charset="UTF-8" src="<c:url value='/resources/index.js' />"></script>
-        <link rel="stylesheet" type="text/css" href="<c:url value='/resources/index.css' />" />
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/libraries/jquery-ui.min.css' />" />
         <link rel="stylesheet" type="text/css" href="<c:url value='/resources/libraries/jquery-ui-timepicker-addon.css' />" />
+        <link rel="stylesheet" type="text/css" href="<c:url value='/resources/index.css' />" />
     </head>
     <body>
         <div id="dialog-addRoom" class="non-printable" title="Lisää huone">
-            <form method="POST" action="../room">
+            <form method="POST" action="<c:url value='/room/' />">
                 <fieldset>
                     <label for="roomNro">Huonenumero</label><br />
                     <input type="number" name="roomNro" class="number ui-widget-content ui-corner-all"><br />
@@ -34,7 +34,7 @@
             </form>
         </div>
         <div id="dialog-addReservation" class="non-printable" title="Lisää huonevaraus">
-            <form id="addReservationForm" method="POST" action="../reservation/" modelAttribute="reservation">
+            <form id="addReservationForm" method="POST" action="<c:url value='/reservation/' />" modelAttribute="reservation">
                 <fieldset>
                     <label for="roomNro">Huonenumero</label><br />
                     <select id="selectedRoomNro" onchange="addPersonField()">
@@ -71,8 +71,8 @@
         <div class="topButtonDiv non-printable">
             <button class="topButton" onclick="showRoomForm()">Lisää huone</button>
             <button class="topButton" onclick="showReservationForm()">Lisää huonevaraus</button>
-            <button class="topButton" onclick="window.print()">Tulosta</button>
-            <button class="topButton" onclick="showNotes()">Huomautukset</button>
+            <button class="topButton" onclick="print($(this))">Tulosta</button>
+            <button class="topButton" onclick="showNotes($(this))">Huomautukset</button>
             <hr /><br />
         </div>
         <div class="weekController non-printable">
@@ -116,18 +116,11 @@
                         <td colspan=7>
                             <%
                                 List<Reservation> reservations = ((Room) pageContext.getAttribute("room")).getReservations();
-                                Calendar now = Calendar.getInstance();
-                                int week = now.get(Calendar.WEEK_OF_YEAR) + (int) request.getAttribute("week");
+
                                 int n = 0;
                                 int oldwidth = 0;
-                                for (Reservation r : reservations) {
-                                    Calendar call = Calendar.getInstance();
-                                    call.setTimeInMillis(r.getStartTime().getTime());
-                                    int startweek = call.get(Calendar.WEEK_OF_YEAR);
-                                    Calendar call2 = Calendar.getInstance();
-                                    call2.setTimeInMillis(r.getEndTime().getTime());
-                                    int endweek = call2.get(Calendar.WEEK_OF_YEAR);
-                                    if (startweek <= week && endweek >= week) {
+                                for (Reservation r : reservations) {;
+                                    if (r.getStartTime().getTime() <= weekStartTime + 604800000 && r.getEndTime().getTime() >= weekStartTime) {
                                         Double width = 163 * 7 * (r.getEndTime().getTime() - r.getStartTime().getTime()) / 608400000.0;
                                         Double left = 163 * 7 * (r.getStartTime().getTime() - weekStartTime) / 608400000.0 - oldwidth;
                                         if (left < 0) {

@@ -15,7 +15,7 @@ public class DefaultController {
 
     @Autowired
     private RoomRepository roomRepository;
-    
+
     @RequestMapping(method = RequestMethod.GET)
     public String redirect() {
         return "redirect:/index/0";

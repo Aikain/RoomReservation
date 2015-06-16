@@ -30,7 +30,9 @@ $(window).load(function () {
                 $(this).dialog("close");
             }
         },
-        close:function(){$("button").blur();}
+        close: function () {
+            $("button").blur();
+        }
     });
     $("#dialog-addReservation").dialog({autoOpen: false, height: 500, width: 350, modal: true,
         buttons: {
@@ -41,7 +43,9 @@ $(window).load(function () {
                 $(this).dialog("close");
             }
         },
-        close:function(){$("button").blur();}
+        close: function () {
+            $("button").blur();
+        }
     });
     $("#dialog-updateReservation").dialog({autoOpen: false, height: 500, width: 350, modal: true,
         buttons: {
@@ -52,30 +56,42 @@ $(window).load(function () {
                 $(this).dialog("close");
             }
         },
-        close:function(){$("button").blur();}
+        close: function () {
+            $("button").blur();
+        }
     });
 });
 function addPersonField() {
+    var names = new Array();
+    $.each($("#selectedRoomNro").parent().find("input[name*='person']"), function () {
+        names.push($(this).val());
+    });
+    console.log(names);
     $("#selectedRoomNro").parent().find("label[for=persons], input[name*='persons']").remove();
     $("br + br").remove();
     for (var i = $("#selectedRoomNro option:selected").attr("maxpersoncount") - 1; i >= 0; i--) {
         $("#selectedRoomNro").after('<input type="text" name="persons[' + i + '].name" class="text ui-widget-content ui-corner-all" />');
     }
-    $("#selectedRoomNro").after("<br /><label for='persons'>Asukkaat:</label><br />")
+    $("#selectedRoomNro").after("<br /><label for='persons'>Asukkaat:</label><br />");
 }
 function addPersonField2() {
+    var names = new Array();
+    $.each($("#selectedRoomNro").parent().find("input[name*='person']"), function () {
+        names.push($(this).val());
+    });
+    console.log(names);
     $("#roomNro-update").parent().find("label[for=persons], input[name*='persons']").remove();
     $("br + br").remove();
     for (var i = $("#roomNro-update option:selected").attr("maxpersoncount") - 1; i >= 0; i--) {
         $("#roomNro-update").after('<input id="person' + i + '-update" type="text" name="persons[' + i + '].name" class="text ui-widget-content ui-corner-all" />');
     }
-    $("#roomNro-update").after("<br /><label for='persons'>Asukkaat:</label><br />")
+    $("#roomNro-update").after("<br /><label for='persons'>Asukkaat:</label><br />");
 }
 function showRoomForm() {
-    $("#dialog-addRoom").dialog("open")
+    $("#dialog-addRoom").dialog("open");
 }
 function showReservationForm() {
-    $("#dialog-addReservation").dialog("open")
+    $("#dialog-addReservation").dialog("open");
 }
 function showUpdateReservationForm(id, roomNro, startTime, endTime, persons) {
     $("#dialog-updateReservation").children().attr('action', '../reservation/' + id + '/update');
@@ -83,14 +99,18 @@ function showUpdateReservationForm(id, roomNro, startTime, endTime, persons) {
     $("#startTime-update").val(startTime);
     $("#endTime-update").val(endTime);
     $("#endTime-update").data().datepicker.settings.minDate = startTime;
-    $("#startTime-update").data().datepicker.settings.maxDate = endTime
+    $("#startTime-update").data().datepicker.settings.maxDate = endTime;
     addPersonField2();
     for (var i = 0; i < persons.length; i++) {
         $("#person" + i + "-update").val(persons[i]);
     }
     $("#dialog-updateReservation").dialog("open");
-
 }
-function showNotes() {
+function showNotes(btn) {
     alert("Jos käytät firefoxia: Avaa valikko -> Tulosta -> Sivun asetukset. Valitse 'Vaaka' ja rastita 'Tulosta tausta'.");
+    btn.blur();
+}
+function print(btn) {
+    window.print();
+    btn.blur();
 }
