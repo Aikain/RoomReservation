@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 
 public interface ReservationRepository extends JpaRepository<Reservation, Long> {
 
-    @Query("select r from Reservation r where r.room = :room and r.startTime between :startTime and :endTime and r.endTime between :startTime and :endTime")
+    @Query("select r from Reservation r where r.room = :room and r.startTime between :startTime and :endTime and r.endTime between :startTime and :endTime or (r.startTime < :startTime and r.endTime > :endTime)")
     public List<Reservation> findAsd(@Param("room") Room room, @Param("startTime") Date startTime, @Param("endTime") Date endTime);
 
 }
