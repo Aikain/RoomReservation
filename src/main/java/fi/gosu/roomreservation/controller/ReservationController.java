@@ -30,15 +30,15 @@ public class ReservationController {
     @Transactional
     @RequestMapping(method = RequestMethod.POST)
     public String createReservation(@ModelAttribute("reservation") Reservation reservation, @RequestParam Long roomId) {
-        System.out.println(reservationRepository.findByStartTimeNotBetweenAndEndTimeNotBetween(reservation.getStartTime(), reservation.getEndTime(), reservation.getStartTime(), reservation.getEndTime()));
+        Room room = roomRepository.findOne(roomId);
+        reservation.setRoom(room);
+        System.out.println(reservationRepository.findAsd(room, reservation.getStartTime(), reservation.getEndTime()));
         List<Person> persons = new ArrayList<>();
         reservation.setId(null);
         for (Person person : reservation.getPersons()) {
             persons.add(personRepository.save(person));
         }
         reservation.setPersons(persons);
-        Room room = roomRepository.findOne(roomId);
-        reservation.setRoom(room);
         reservation = reservationRepository.save(reservation);
         room.getReservations().add(reservation);
         return "redirect:/index/0";
