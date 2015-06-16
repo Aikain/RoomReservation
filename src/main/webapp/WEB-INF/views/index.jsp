@@ -37,10 +37,10 @@
             <form id="addReservationForm" method="POST" action="../reservation/" modelAttribute="reservation">
                 <fieldset>
                     <label for="roomNro">Huonenumero</label><br />
-                    <select id="selectedRoomNro" onchange="addPersonField()">
+                    <select id="selectedRoomNro" name="roomId" onchange="addPersonField()">
                         <option>---</option>
                         <c:forEach var="room" items="${rooms}">
-                            <option value="${room.id}" name="roomId" maxpersoncount="${room.maxPersonCount}">${room.roomNro}</option>
+                            <option value="${room.id}" maxpersoncount="${room.maxPersonCount}">${room.roomNro}</option>
                         </c:forEach>
                     </select><br />
                     <label for="startTime">Saapumisaika</label><br />
