@@ -64,28 +64,45 @@ $(window).load(function () {
 function addPersonField() {
     var names = new Array();
     $.each($("#selectedRoomNro").parent().find("input[name*='person']"), function () {
-        names.push($(this).val());
+        if ($(this).val() != "") {
+            names.push($(this).val());
+        }
     });
     console.log(names);
     $("#selectedRoomNro").parent().find("label[for=persons], input[name*='persons']").remove();
     $("br + br").remove();
     for (var i = $("#selectedRoomNro option:selected").attr("maxpersoncount") - 1; i >= 0; i--) {
-        $("#selectedRoomNro").after('<input type="text" name="persons[' + i + '].name" class="text ui-widget-content ui-corner-all" />');
+        $("#selectedRoomNro").after('<input id="person' + i + '-add" type="text" name="persons[' + i + '].name" class="text ui-widget-content ui-corner-all" />');
     }
     $("#selectedRoomNro").after("<br /><label for='persons'>Asukkaat:</label><br />");
+    for (var i = 0; i < names.length; i++) {
+        if ($("#person" + i + "-add").length) {
+            $("#person" + i + "-add").val(names[i]);
+        } else {
+            $("#addReservation-error").append("<u>" + names[i] + "</u> ei mahtunut huoneeseen!")
+        }
+    }
 }
 function addPersonField2() {
     var names = new Array();
     $.each($("#roomNro-update").parent().find("input[name*='person']"), function () {
-        names.push($(this).val());
+        if ($(this).val() != "") {
+            names.push($(this).val());
+        }
     });
-    console.log(names);
     $("#roomNro-update").parent().find("label[for=persons], input[name*='persons']").remove();
     $("br + br").remove();
     for (var i = $("#roomNro-update option:selected").attr("maxpersoncount") - 1; i >= 0; i--) {
         $("#roomNro-update").after('<input id="person' + i + '-update" type="text" name="persons[' + i + '].name" class="text ui-widget-content ui-corner-all" />');
     }
     $("#roomNro-update").after("<br /><label for='persons'>Asukkaat:</label><br />");
+    for (var i = 0; i < names.length; i++) {
+        if ($("#person" + i + "-update").length) {
+            $("#person" + i + "-update").val(names[i]);
+        } else {
+            $("#updateReservation-error").append("<u>" + names[i] + "</u> ei mahtunut huoneeseen!")
+        }
+    }
 }
 function showRoomForm() {
     $("#dialog-addRoom").dialog("open");

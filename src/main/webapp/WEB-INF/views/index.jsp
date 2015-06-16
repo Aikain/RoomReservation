@@ -29,6 +29,7 @@
                     <input type="number" name="roomNro" class="number ui-widget-content ui-corner-all"><br />
                     <label for="maxPersonCount">Max asukamäärä</label><br />
                     <input type="number" name="maxPersonCount" class="number ui-widget-content ui-corner-all"><br />
+                    <p id="addRoom-error"></p>
                     <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
                 </fieldset>
             </form>
@@ -47,6 +48,7 @@
                     <input type="text" name="startTime" class="text ui-widget-content ui-corner-all"><br />
                     <label for="endTime">Lähtöaika</label><br />
                     <input type="text" name="endTime" class="text ui-widget-content ui-corner-all"><br />
+                    <p id="addReservation-error"></p>
                     <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
                 </fieldset>
             </form>
@@ -64,6 +66,7 @@
                     <input id="startTime-update" type="text" name="startTime" class="text ui-widget-content ui-corner-all"><br />
                     <label for="endTime">Lähtöaika</label><br />
                     <input id="endTime-update" type="text" name="endTime" class="text ui-widget-content ui-corner-all"><br />
+                    <p id="updateReservation-error"></p>
                     <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
                 </fieldset>
             </form>
