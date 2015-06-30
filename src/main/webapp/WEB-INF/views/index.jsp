@@ -117,7 +117,7 @@
                     </c:if>
                     <tr>
                         <td class="roomNro"><input class="non-printable" type="checkbox" name="selectedRoom${roomGroupNro}" />${room.roomNro} (${room.maxPersonCount})</td>
-                        <td colspan=7><%
+                        <td id="moveInHere" colspan=7><%
                                 List<Reservation> reservations = ((Room) pageContext.getAttribute("room")).getReservations();
 
                                 int n = 0;
@@ -139,7 +139,7 @@
                                         }
                                         persons = persons.substring(0, persons.length() - 2);
                                         String ondbclick = "showUpdateReservationForm(" + r.getId() + ", " + r.getRoom().getId() + ", \"" + r.getStartTime() + "\", \"" + r.getEndTime() + "\", [\"" + persons.replace(", ", "\", \"") + "\"])";
-                                        out.print("<div ondblclick='" + ondbclick + "' class='reservation bg" + (n % 2 + 1) + "' style='left:" + left + "px;width:" + width + "px'>" + persons + "</div>");
+                                        out.print("<div ondblclick='" + ondbclick + "' class='draggable reservation bg" + (n % 2 + 1) + "' style='left:" + left + "px;width:" + width + "px'>" + persons + "</div>");
                                         oldwidth += width;
                                     }
                                     n++;

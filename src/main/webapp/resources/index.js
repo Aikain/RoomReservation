@@ -60,6 +60,16 @@ $(window).load(function () {
             $("button").blur();
         }
     });
+    $(".draggable").draggable({
+        grid: [1, 23],
+        revert: "invalid"
+    });
+    $("td[colspan=7]").droppable({
+        activeClass: "ui-state-default",
+        hoverClass: "ui-state-hover",
+        drop: function( event, ui ) {},
+        tolerance: "fit"
+    });
 });
 var extraPerson = Array();
 function addPersonField() {
